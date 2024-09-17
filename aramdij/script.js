@@ -1,0 +1,1 @@
+var kezdodatum = prompt("Igen")

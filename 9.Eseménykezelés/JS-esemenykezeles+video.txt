@@ -1,0 +1,25 @@
+videó linkje:
+https://www.youtube.com/watch?v=YiOlaiscqDY
+
+
+kérdések:
+1. Mit nevezünk eseménynek?
+
+2. Melyik a legegyszerűbb módja az eseménykezelésnek?
+
+3. Hogyan lehet az inline eseménykezelést megvalósítani?
+
+4. Milyen negatívumai vannak az inline eseménykezelésnek?
+
+5. Hogyan használható az eseményfigyelés függvénye (addEventListener)?
+
+6. Mire használható az Event objektum (Event Object)?
+
+7. Hogyan írható egy eseményfigyelés a nyíl (arrow) függvénnyel?
+
+
+
+
+
+
+

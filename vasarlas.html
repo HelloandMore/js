@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="J:\CSSSS\Bootstrap\css\bootstrap.css">
+    <title>Áruszámláló</title>
+</head>
+<body>
+    <h1>Áruszámláló</h1>
+    <script>
+        //adatbeolvasás = prompt
+        //egész számmá alakítás = parseInt(...)
+        //valós számmá alakítás = parseFloat(...)
+        //Math.round(...) = egész számra kerekíti a megadott értéket
+        var penz;
+        penz = parseFloat(prompt("Írd be, hogy mennyit költenél!"));
+        var ar;
+        ar = parseFloat(prompt("Mennyi a kilónkénti ára?"));
+        var maradek;
+        maradek = (penz % ar);
+        aru = penz / ar;
+        document.write("Elköltendő érték: ",penz + " Ft");
+        document.write("<br>Termék kilónkéti ára: ", ar + " Ft/Kg");
+        document.write("<br>Maradék pénz: ", maradek + " Ft");
+        document.write("<br>Ennyi terméket tudsz venni ennyi pénzből: ", Math.round(aru) + " Kg");
+    </script>
+</body>
+</html>

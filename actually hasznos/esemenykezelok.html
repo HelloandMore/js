@@ -1,0 +1,87 @@
+﻿<!DOCTYPE HTML>
+<HTML lang="hu">
+
+<HEAD>
+	<META charset="utf-8">
+	<TITLE>Eseménykezelők</TITLE>
+	
+</HEAD>
+
+<BODY>
+	<h1>Eseménykezelők</h1>
+	
+	<p>Oldal egészére vonatkozó események, eseménykezelők</p>
+	<ul>
+		<li>load - onload: a böngésző befejezte az oldal betöltését</li>
+		<li>unload - onunload: az oldalról való távozás, frissítés</li>
+		<li>resize - onresize: a böngészőablak átméreteződésekor</li>
+		<li>scroll - onscroll: az ablak / elem tartalma gördítésre kerül</li>
+	</ul>
+	
+	<p>Egérrel kapcsolatos események, eseménykezelők</p>
+	<ul>
+		<li>click - onclick: egérkattintás az objektumon</li>
+		<li>dblclick - ondblclick: dupla egérkattintás az objektumon</li>
+		<li>mouseover - onmouseover: rámutatás (az egérkurzort az objektumra pozicionáljuk)</li>
+		<li>mouseout - onmouseout: egérmutató eltávolítása az elemről</li>
+		<li>mousemove - onmousemove: egy adott objektum területe felett mozgatjuk az egérkurzort</li>
+		<li>mousedown - onmousedown: lenyomjuk és lenyomva tarjuk az egér gombját</li>
+		<li>mouseup - onmouseup: a lenyomva tartott egérgomb felengedése </li>
+	</ul>
+	
+	<p>Billentyűzettel kapcsolatos események, eseménykezelők</p>
+	<ul>
+		<li>keypress - onkeypress: billentyűzet egyik billentyűjének lenyomása</li>
+		<li>keydown - onkeydown: billentyű lenyomása és lenyomva tartása</li>
+		<li>keyup - onkeyup: lenyomott billentyű felengedése</li>
+	</ul>
+	
+	<p>Űrlapokkal kapcsolatos események, eseménykezelők</p>
+	<ul>
+		<li>focus - onfocus: fókuszba kerül az elem (beviteli mezőben megjelenik a kurzor, rádiógomb)</li>
+		<li>blur - onblur: az elemről lekerül a fókusz (pl. kikattunk a beviteli mezőből</li>
+		<li>
+			
+		
+	</ul>	
+	
+	<p>Űrlap objektummal (form) kapcsolatos tulajdonságok, események, eseménykezelők</p>
+	<ul>
+		<li>minden elem a form és /form elemek közé kerül</li>
+		<li>pl. form name=... method=... action=... enctype=...</li>
+		<li>a form HTML-tag tulajdonságai: <br>
+			name = űrlap neve (pl. űrlap1)<br>
+			method = a küldés módja: post, get (post=e-mail, get=feldolgozóprogram) - get az alapértelmezett<br>
+			action= e-mail cím (mailto:... )vagy feldolgozóprogram fájlneve (feldolgoz.html vagy feldolg.php)<br>
+			enctype = kódolás módja (opcionális)
+		</li>
+		<li>form-ra történő hivatozás: id-val vagy name-mel (pl. name értékkel: ablaknév.document.űrlapnév</li>
+		<li>a form JS-beli jellemzői: (ha a form neve űrlap1)<br>
+			document.űrlap1.action - action tulajdonság értéke<br>
+			document.űrlap1.method - küldési mód lekérdezése<br>
+			document.űrlap1.length - az űrlap elemeinek száma<br>
+			document.űrlap1.target - pl. _blank (új lap)
+		</li>
+		<li>a form tagfüggvényei (metódusai) <br>
+			document.űrlap1.submit() - ha küldés gomb nélkül szeretnénk az űrlap adatait továbbítani<br>
+			document.űrlap1.reset() - ha reset gomb nélkül szeretnénk az űrlap adatait törölni<br>
+		</li>
+		<li>a form eseménykezelői (form nyitótagjában vagy külső JS-fájlban a form id-ja segítségével használjuk)<br>
+			onsubmit="return ellenőrzőfg()" - ha az ellenőrzőfg() értéke igaz, akkor küldi az adatokat, ha hamis, akkor nem<br>
+			onreset="return törlőfg()" - ha a törlőfg() értéke igaz, akkor törli az adatokat, ha hamis, akkor nem törli az adatokat
+		</li>
+		<li>űrlap elemeinek elérése: id-val vagy name értékkel<br>
+			(ablaknév.)document.űrlapnév.elements - az összes elem, ami az űrlapon elhelyezésre került, egy tömbön keresztül érhető el: tömb neve = elements (pl. 1. elem értéke: document.űrlapnév.elements[0].value)<br>
+			az űrlapon lévő elemek száma: document.űrlapnév.elements.length
+		</li>
+
+		
+		
+		
+		
+		
+		
+	
+</BODY>
+
+</HTML>

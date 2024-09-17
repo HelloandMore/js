@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakas Felujitas</title>
+</head>
+
+<body>
+    <p>Ez a program bekéri a szoba méreteit, az ajtók és ablakok számát, majd megjeleníti a festéshez és parkettázáshoz
+        szükséges anyagmennyiséget</p>
+    <p>A szoba adatai</p>
+
+    <p>
+        <label for="szelesseg">szélessége</label>
+        <input size="5" type="text" id="szelesseg"> (cm)
+    </p>
+
+    <p>
+        <label for="hosszusag">hosszúság</label>
+        <input size="5" type="text" id="hosszusag"> (cm)
+    </p>
+
+    <p>
+        <label for="magassag">magasság</label>
+        <input size="5" type="text" id="magassag"> (cm)
+    </p>
+
+
+
+    <p>
+        <label for="ajtokszama">ajtók száma (90*200)</label>
+        <input size="5" type="text" id="ajtokszama"> (db)
+    </p>
+
+    <p>
+        <label for="ablakokszama">ablakok száma (70*100)</label>
+        <input size="5" type="text" id="ablakokszama"> (db)
+    </p>
+
+    <button onclick="szamol()">Kalkuláció</button>
+
+    <div id="festek"></div>
+    <div id="padlo"></div>
+    <div id="ktg"></div>
+
+    <script>
+        function szamol() {
+            var sz = parseInt(document.getElementById("szelesseg").value);
+            var h = parseInt(document.getElementById("hosszusag").value);
+            var m = parseInt(document.getElementById("magassag").value);
+
+            var ablak = parseInt(document.getElementById("ablakokszama").value);
+            var ajto = parseInt(document.getElementById("ajtokszama").value);
+
+
+            var falfelulet = (((sz*h)+((sz*2)+(h*2))*m)-((ajto*(90*200))+(ablak*(70*100))))/10000;
+            var festendo = Math.ceil((falfelulet*5)/10)
+            var festekAr = 3000
+
+            var padlofelulet = ((sz*h)/10000);
+            var parketta = Math.ceil(padlofelulet/2.5); 
+            var parkettaAr = 9248
+
+            f = document.getElementById("festek");
+            f.innerHTML = "A festendő falfelület nagysága "+falfelulet+"m<sup>2</sup>";
+            f.innerHTML += " és a szükséges 10l-es festékes vödör mennyisége: "+festendo+"vödör";
+
+
+            g = document.getElementById("padlo")
+            g.innerHTML = "A parkettázandó terület nagysága "+padlofelulet+"m<sup>2</sup>";
+            g.innerHTML += " és a szükséges parkettás doboz mennyisége: "+parketta+"doboz";
+            
+            
+            document.getElementById("ktg").innerHTML = "Költendő pénz mennyisége "+((festendo*festekAr)+(parketta*parkettaAr))+"Ft";
+
+        }
+    </script>
+</body>
+
+</html>

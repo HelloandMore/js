@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="J:\CSSSS\Bootstrap\css\bootstrap.css">
+    <title>Fogyasztás számláló</title>
+</head>
+<body>
+    <h1>Fogyasztás számláló</h1>
+    <script>
+        //adatbeolvasás = prompt
+        //egész számmá alakítás = parseInt(...)
+        //valós számmá alakítás = parseFloat(...)
+        //Math.round(...) = egész számra kerekíti a megadott értéket
+        var startval;
+        startval = parseFloat(prompt("Írd be a KEZDŐ óraállást!"));
+        var endval;
+        endval = parseFloat(prompt("Írd be a ZÁRÓ óraállást"));
+        var tankoltval;
+        tankoltval = parseFloat(prompt("Írd be a TANKOLT BENZIN MENNYISÉGÉT (l/100 km)"));
+        var fogyasztas;
+        var kulonbseg;
+        kulonbseg = endval - startval;
+        fogyasztas = (tankoltval/kulonbseg)*100;
+        document.write("Kezdő óraállás: ",startval + " km");
+        document.write("<br>Záró óraállás: ", endval + " km");
+        document.write("<br>Tankolt benzin mennyisége: ", tankoltval + " l");
+        document.write("<br>Az autó fogyasztása: ", Math.round(fogyasztas) + " l/100km");
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="J:\CSSSS\Bootstrap\css\bootstrap.css">
+    <title>Arányok</title>
+</head>
+<body>
+    <h1>Osztályarányok</h1>
+    <script>
+        //adatbeolvasás = prompt
+        //egész számmá alakítás = parseInt(...)
+        //valós számmá alakítás = parseFloat(...)
+        //Math.round(...) = egész számra kerekíti a megadott értéket
+        var a;
+        a = parseFloat(prompt("Írd be az osztály létszámát!"));
+        var b;
+        b = parseFloat(prompt("Írd be a lányok létszámát!"));
+        
+        var lanyArany = b/(a/100)
+        var fiuArany = 100- lanyArany
+
+        document.write("Osztály létszáma: ",a  + " fő<sup></sup>");
+        document.write(" <br>Lányok létszáma: ",b + " fő<sup></sup>");
+        document.write(" <br>Lányok aránya: ",Math.round(lanyArany) + " %<sup></sup>");
+        document.write(" <br>Fiúk aránya: ",Math.round(fiuArany) + " %<sup></sup>");
+    </script>
+</body>
+</html>

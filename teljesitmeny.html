@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="J:\CSSSS\Bootstrap\css\bootstrap.css">
+    <title>Teljesítmény</title>
+</head>
+<body>
+    <h1>Teljesítmény</h1>
+    <script>
+        //adatbeolvasás = prompt
+        //egész számmá alakítás = parseInt(...)
+        //valós számmá alakítás = parseFloat(...)
+        //Math.round(...) = egész számra kerekíti a megadott értéket
+        var max;
+        var task1;
+        var task2;
+        var task3;
+        var task4;
+        var task5;
+        var task6;
+
+        task1 = parseFloat(prompt("Írd ide az első feladat pontszámát"));
+        task2 = parseFloat(prompt("Írd ide a második feladat pontszámát"));
+        task3 = parseFloat(prompt("Írd ide a harmadik feladat pontszámát"));
+        task4 = parseFloat(prompt("Írd ide a negyedik feladat pontszámát"));
+        task5 = parseFloat(prompt("Írd ide az ötödik feladat pontszámát"));
+        task6 = parseFloat(prompt("Írd ide a hatodik feladat pontszámát"));
+
+        document.write("Az első feladat pontszáma: ", task1);
+        document.write("<br>A második feladat pontszáma: ", task2);
+        document.write("<br>A harmadik feladat pontszáma: ", task3);
+        document.write("<br>A negyedik feladat pontszáma: ", task4);
+        document.write("<br>Az ötödik feladat pontszáma: ", task5);
+        document.write("<br>A hatodik feladat pontszáma: ", task6);
+        max = (task1+task2+task3+task4+task5+task6);
+        document.write("<br><br>A feladatok pontszámának összege: ", max);
+
+    </script>
+</body>
+</html>

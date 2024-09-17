@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valamelyik nap</title>
+</head>
+<script>
+    /*Kérjük be a felhasználótól a nap sorszámát (pl. 22) és a napot (pl. szerda), majd írassuk ki azokat a dátumokat (1900.01.01 és az aktuális nap között), amelyre a két kritérium teljesül!. - A listában legelsőként az aktuális dátumhoz legközelebbi nap szerepeljen, a legvégén pedig az időben legtávolabbi. */
+    var currentDate = new Date();
+    var currentYear = currentDate.getFullYear();
+    var currentMonth = currentDate.getMonth();
+    var currentDay = currentDate.getDate();
+    var dayNumber;
+    var dayName;
+    do {
+        dayNumber = prompt('Kérem, adja meg a nap sorszámát (1-31)!');
+        dayNumber = parseInt(dayNumber);
+    } while (isNaN(dayNumber) || dayNumber < 1 || dayNumber > 31);
+    do {
+        dayName = prompt('Kérem, adja meg a nap nevét (pl. hétfő)!');
+    } while (!dayName);
+    var dates = [];
+    for (var year = 1900; year <= currentYear; year++) {
+        for (var month = 0; month <= 11; month++) {
+            var date = new Date(year, month, dayNumber);
+            if (date.getMonth() === month && date.getDate() === dayNumber && date.toLocaleDateString('hu-HU', {weekday: 'long'}).toLowerCase() === dayName.toLowerCase()) {
+                dates.push(date.toLocaleDateString('hu-HU'));
+            }
+        }
+    }
+    document.write(dates.join('<br>'));
+</script>
+<body>
+</body>
+</html>

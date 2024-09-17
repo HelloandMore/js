@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      div {margin-bottom: 20px;}
+      div#formazott { font-weight: 700; color: red;}
+    </style>
+    <title>Szülinap óta eltelt idő</title>
+</head>
+<body>
+
+    <h1>Szülinap óta eltelt idő</h1>
+
+    <div id="lekerdezett"></div>
+    <div id="formazott"></div>
+ 
+    <script>
+
+      // a hónapneveket 0-tól indexelve tároljuk, mert a getMonth() is így adja vissza az értékeket
+        let honapok = ["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"];
+      // a napneveket 0-tól indexelve tároljuk, mert a getDay() is így adja vissza az értékeket
+        let napok = ["vasárnap","hétfő","kedd","szerda","csütörtök","péntek","szombat","vasárnap"];
+        setInterval(() => {
+        // lekérdezzük az aktuális időt:
+        let akt = new Date();
+        
+        // ez a forma az, amit a Date objektum ad vissza:
+        document.getElementById("lekerdezett").innerHTML = `A szülinaptól eltelt idő elemekre szedve: ${ev} év ${het} hét ${nap} nap ${o} óra ${p} perc ${mp} mp ${emp} ezredmp`;
+        // típusellenőrzés:
+        console.log(typeof akt);
+
+        // szülinap
+        let szul = new Date(2006,4,30,5,20,10,6150);
+        // különbségük
+        let kul = Math.abs(akt-szul);
+        // számlálás
+        let mp = Math.floor(kul/1000);
+        let emp = kul%1000;
+
+        let p = Math.floor(mp/60);
+        mp = mp%60;
+
+        let o = Math.floor(p/60);
+        p = p%60;
+
+        let nap = Math.floor(o/24);
+        nap = nap%24;
+
+        let het = Math.floor(n/7);
+        het = het%7;
+
+        let ev = Math.floor(nap/365);
+        ev = ev%365;
+
+        // a saját magunk kívánalmainak megfelelő formátumban történő dátum és idő kiírása:
+        }, 500);
+
+    </script>
+
+</body>
+
+</html>

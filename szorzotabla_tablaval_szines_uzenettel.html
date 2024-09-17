@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szorzótábla</title>
+    <style>
+        table { 
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .even {
+            background-color: red;
+            color: yellow;
+        }
+        .odd {
+            background-color: yellow;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Szorzótábla</h1>
+    <form>
+        <label for="rows">Sorok száma:</label>
+        <input type="number" id="rows" name="rows" min="1">
+        <label for="columns">Oszlopok száma:</label>
+        <input type="number" id="columns" name="columns" min="1">
+        <button type="button" onclick="generateTable()">Tábla generálása</button>
+    </form>
+    <div id="tableContainer"></div>
+
+    <script>
+        function generateTable() {
+            const rows = parseInt(document.getElementById('rows').value);
+            const columns = parseInt(document.getElementById('columns').value);
+            let table = "<table>";
+
+            for (let i = 1; i <= rows; i++) {
+                table += "<tr>";
+                for (let j = 1; j <= columns; j++) {
+                    const product = i * j;
+                    const cellClass = (i + j) % 2 === 0 ? 'even' : 'odd';
+                    table += `<td class="${cellClass}" onclick="showCellInfo(${i},${j})">${product}</td>`;
+                }
+                table += "</tr>";
+            }
+
+            table += "</table>";
+            document.getElementById('tableContainer').innerHTML = table;
+        }
+
+        function showCellInfo(row, column) {
+            const message = `A cella értéke ${row * column}, amelyet a sor: ${row} és az oszlop: ${column} szorzataként kaptunk.`;
+            alert(message);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szín-kép csere</title>
+</head>
+<script>
+    /* Előre meghatározott időközönként (5 másodpercenként) cseréljük le egy oldalon az alkalmazott háttérszínt és (a vele összhangban lévő, olvasható) betűszínt, valamint az oldalon elhelyezett képek közül legalább kettőt változtassuk meg */
+    window.onload = function() {
+        let colors = ["red", "green", "blue", "yellow", "black", "white"];
+        let images = ["kep1.jpg", "kep2.jpg", "kep3.jpg", "kep4.jpg"];
+        let i = 0;
+        let j = 0;
+        let k = 0;
+        let interval = setInterval(() => {
+            document.body.style.backgroundColor = colors[i];
+            document.body.style.color = colors[(i + 3) % 6];
+            document.images[j].src = images[k];
+            i = (i + 1) % 6;
+            j = (j + 1) % 4;
+            k = (k + 1) % 4;
+        }, 5000);
+    }
+</script>
+<style>
+    body {
+        font-size: 1.5em;
+    }
+    img {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+<body>
+    <h1>Teszt</h1>
+    <img>
+    <img>
+    <img>
+    <img>
+</body>
+</html>

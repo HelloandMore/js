@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szorzás</title>
+    <style>
+        table, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h1>Szorzótábla 10*10</h1>
+    <script>
+        document.write("<table>");
+        for (sor=1; sor<=10; sor++) {
+            document.write("<tr>");
+            for (oszlop=1; oszlop<=10; oszlop++) {
+                document.write("<td>"+sor*oszlop+"</td>","  ");
+            }
+            document.write("</tr>")
+        }
+        
+    </script>
+    
+</body>
+</html>

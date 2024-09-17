@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="J:\CSSSS\Bootstrap\css\bootstrap.css">
+    <title>Téglalap</title>
+</head>
+<body>
+    <h1>Téglalap kerületének és területének számítása</h1>
+    <script>
+        //adatbeolvasás = prompt
+        //egész számmá alakítás = parseInt(...)
+        //valós számmá alakítás = parseFloat(...)
+        var a;
+        a = parseFloat(prompt("Írd be az 'a' oldalhosszúságot!"));
+        var b;
+        b = parseFloat(prompt("Írd be a 'b' oldalhosszúságot!"));
+        var t = a*b;
+        var k = 2*(a+b);
+
+        //Math.round(...) = egész számra kerekíti a megadott értéket
+
+        document.write("Az 'A' érték: ",a  + " cm<sup></sup>");
+        document.write(" <br>A 'B' érték: ",b + " cm<sup></sup>");
+        document.write(" <br>A téglalap területének nagysága kerekítés nélkül: ", t + " cm<sup>2</sup>");
+        document.write(" <br>A téglalap kerületének nagysága kerekítés nélkül: ", k + " cm<sup></sup>");
+        document.write(" <br>A téglalap területének nagysága kerekítéssel: ", Math.round(t) + " cm<sup>2</sup>");
+        document.write(" <br>A téglalap kerületének nagysága kerekítéssel: ", Math.round(k) + " cm<sup></sup>");
+    </script>
+</body>
+</html>

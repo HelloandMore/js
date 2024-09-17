@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Számolás-kiírás2</title>
+</head>
+
+<body>
+    <h1>Számolás - kiírás2</h1>
+
+    <!-- 
+        input = adatbekérés (űrlapmezővel) -> text (string)
+        getElementById = id alapján elérhető egy-egy tag
+        value = érték (mező értéke vagy tartalma)
+        parseInt = egész számmá alakítás
+        parseFloat = lebegőpontos számmá alakítás
+        innerHTML = weboldalra kiírás egy adott id-jú HTML tagba
+        objektum.style.xxx = objektum stílusjegyeinek megadása
+        Math.xxx(par) = matematikai műveletek: .pow, .sqrt, .round, .ceil, .floor
+    -->    
+
+    <!-- feladat:
+        fiúk és lányok számának bekérése,
+        összlétszám kiiratása,
+        fiú és lány arány kiiratása
+    -->
+
+    <p>Ez a program bekéri a fiúk és lányok számát, majd kiírja az összlétszámot és a fiú-lány arányt.</p>
+
+    <p>
+        <label for="fiuk">Fiúk száma:</label>  
+        <input type="text" id="fiuk">
+    </p>
+
+    <p>
+        <label for="lanyok">Lányok száma:</label>  
+        <input type="text" id="lanyok">
+    </p>
+
+    <button onclick="szamol();">Számolás indul</button>
+
+    <div id="ossz"></div>
+    <div id="arany"></div>
+
+    <script>
+        function szamol() {
+            // adatok kinyerése
+            var f = parseInt(document.getElementById("fiuk").value);
+                // console.log(typeof(f),f);
+            var l = parseInt(document.getElementById("lanyok").value);
+                // console.log(typeof(l),l);
+            
+            // összlétszám és arányok számolása
+            var o = f+l;
+            var fa = Math.round(f/o*100);
+            var la = 100-fa;
+            
+            // eredmények kiiratása
+            var oh = document.getElementById("ossz");
+            oh.innerHTML = "Az osztály összlétszáma: "+o+" fő.";
+            oh.style.color = "green";
+            oh.style.fontWeight = "bold";
+            oh.style.marginTop = "20px";
+            var ah = document.getElementById("arany");
+            ah.innerHTML = "A fiúk és lányok aránya: "+fa+"% : "+la+"%.";
+            ah.style.backgroundColor = "yellow";
+            ah.style.fontStyle = "italic";
+            ah.style.width = "50%";
+        }
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>

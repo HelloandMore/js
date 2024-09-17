@@ -1,0 +1,20 @@
+fieldset {
+    border: 3px dashed green;
+    background-color: rgb(219, 237, 231);
+    margin-bottom: 10px;
+}
+
+legend {
+    background-color: green;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+}
+
+fieldset>div {
+    margin-bottom: 10px;
+}
+
+input[type="text"]:focus {
+    background-color: yellow;
+}

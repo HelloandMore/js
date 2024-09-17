@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pénzgyűjtési kalkulátor</title>
+</head>
+<body>
+
+  <h2>Pénzgyűjtési kalkulátor</h2>
+
+  <label>Induló összeg (tőke):</label>
+  <input type="number" id="toke">
+  <h1></h1>
+  <label>Havi befizetés összege:</label>
+  <input type="number" id="befizetes">
+  <h1></h1>
+  <label>Éves kamatláb (%):</label>
+  <input type="number" id="kamatlab">
+  <h1></h1>
+  <label>Hónapok száma:</label>
+  <input type="number" id="honapok">
+  <h1></h1>
+  <button onclick="szamol()">Számol</button>
+
+  <table id="tabla">
+    <tr>
+      <th>Hónap</th>
+      <th>Hónap eleji összeg</th>
+      <th>Befizetés</th>
+      <th>Kamat</th>
+      <th>Hónap végi összeg</th>
+    </tr>
+  </table>
+
+  <p id="osszesen"></p>
+
+  <script>
+    function szamol() {
+      var toke = parseFloat(document.getElementById('toke').value);
+      var befizetes = parseFloat(document.getElementById('befizetes').value);
+      var kamatlab = parseFloat(document.getElementById('kamatlab').value);
+      var honapok = parseInt(document.getElementById('honapok').value);
+
+      var tabla = document.getElementById('tabla');
+      var osszesen = 0;
+
+      for (var i = 1; i <= honapok; i++) {
+        var haviKamat = (toke + osszesen) * (kamatlab / 100 / 12);
+        var haviOsszeg = toke + osszesen + befizetes + haviKamat;
+        osszesen += befizetes + haviKamat;
+
+        var row = tabla.insertRow();
+        row.insertCell().innerHTML = i;
+        row.insertCell().innerHTML = toke + osszesen - befizetes - haviKamat;
+        row.insertCell().innerHTML = befizetes;
+        row.insertCell().innerHTML = haviKamat.toFixed(2);
+        row.insertCell().innerHTML = haviOsszeg.toFixed(2);
+      }
+
+      var osszesenCella = document.getElementById('osszesen');
+      osszesenCella.innerHTML = "Induló összeg: " + toke + ", Összesen befizetett összeg: " + osszesen.toFixed(2) + ", Végső összeg: " + (toke + osszesen).toFixed(2) + ", Végső összeg / Induló összeg aránya: " + ((toke + osszesen) / toke).toFixed(2);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Számolás-kiírás</title>
+</head>
+
+<body>
+    <h1>Számolás - kiírás</h1>
+
+    <!-- 
+        prompt = adatbekérés (felugró ablakban)
+        typeof(változó) VAGY typeof változó = változó típusának lekérdezése
+        parseInt = egész számmá alakítás
+        parseFloat = lebegőpontos számmá alakítás
+        document.write = weboldalra kiírás
+        console.log = konzolra írás
+        Math.xxx(par) = matematikai műveletek: .pow, .sqrt, .round, .ceil, .floor
+    -->    
+
+    <!-- feladat:
+        fiúk és lányok számának bekérése,
+        összlétszám kiiratása,
+        fiú és lány arány kiiratása
+    -->
+
+    <p>Ez a program bekéri a fiúk és lányok számát, majd kiírja az összlétszámot és a fiú-lány arányt.</p>
+
+    <script>
+        var f = parseInt(prompt("Kérem a fiúk számát!"));
+        // console.log("fiúk száma:",f);
+        // document.write("fiúk száma:",f);
+        
+        var l = parseInt(prompt("Kérem a lányok számát!"));
+
+        var o = f+l;
+        document.write("<b>Az osztály létszáma: "+o+" fő.</b><br>");
+
+        var fa = Math.round(f/o*100);
+        var la = 100-fa;
+        document.write("A fiúk és lányok aránya: "+fa+"% : "+la+"%");
+
+
+    </script>
+
+
+
+
+</body>
+</html>

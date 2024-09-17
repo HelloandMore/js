@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      div {margin-bottom: 20px;}
+      div#formazott { font-weight: 700; color: red;}
+    </style>
+    <title>Dátum-id(alap)</title>
+</head>
+<body>
+
+    <h1>Aktuális dátum és idő lekérdezése és formázott kiírása (gomb lenyomásával)</h1>
+
+    <div id="lekerdezett"></div>
+    <div id="formazott"></div>
+    <button id="gomb" onclick="leker()">Dátum és idő lekérdezése</button>
+ 
+    <script>
+
+      // a hónapneveket 0-tól indexelve tároljuk, mert a getMonth() is így adja vissza az értékeket
+        let honapok = ["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"];
+      // a napneveket 0-tól indexelve tároljuk, mert a getDay() is így adja vissza az értékeket
+        let napok = ["vasárnap","hétfő","kedd","szerda","csütörtök","péntek","szombat","vasárnap"];
+
+      function leker() { 
+
+        // lekérdezzük az aktuális időt:
+        let akt = new Date();
+        
+        // ez a forma az, amit a Date objektum ad vissza:
+        document.getElementById("lekerdezett").innerHTML = `Az aktuális dátum és idő: ${akt}`;
+        // típusellenőrzés:
+        console.log(typeof akt);
+
+        // részelemekre bontjuk a lekérdezett dátumobjketumot:
+        let ev = akt.getFullYear();
+        let ho = akt.getMonth();
+        let nap = akt.getDate();
+        let hn = akt.getDay();
+        let o = akt.getHours();
+        let p = akt.getMinutes();
+        let mp = akt.getSeconds();
+
+        // a saját magunk kívánalmainak megfelelő formátumban történő dátum és idő kiírása:
+        document.getElementById("formazott").innerHTML = `A mai dátum: ${ev}. ${honapok[ho]} ${nap}. (${napok[hn]}) <br> és a mai idő: ${o} óra ${p} perc ${mp} másodperc`;
+
+      }  
+
+    </script>
+
+</body>
+
+</html>

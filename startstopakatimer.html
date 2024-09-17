@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+</head>
+
+<body>
+    <p>
+    <label for="bekm">Add meg a percet: </label>
+    <input type="number" id="bekm" value="0"> perc
+    </p>
+    <label for="beks">Add meg a másodpercet: </label>
+    <input type="number" id="beks" value="0"> mp
+    </p>
+    <p id="eredmeny"></p>
+    <button id="counterCreator" onclick="counterCreator()">Számláló elkészítse</button>
+    <button id="start" onclick="startszamlalo()">Start</button>
+    <button id="stop" onabort="stopszamlalo()">Stop</button>
+
+    <script>
+        let x
+        let s = 500
+        function counterCreator() {
+            
+            s = parseInt(document.getElementById("bekm"))*60 + parseInt(document.getElementById("beks"))
+            document.getElementById("start").style.display = "inline"
+            document.getElementById("counterCreator").style.display = "none"
+
+        }
+        function szamlal() {
+            s = (s - 1)
+
+            let m = Math.floor(s / 60)
+            let s2 = s%60
+            document.getElementById("eredmeny").innerHTML = `${m} min ${s2} sec`
+
+            if (s <= 0) {
+                clearInterval(x)
+                document.getElementById("eredmeny").innerHTML = "Lejárt az idő"
+            }
+        }
+        function startszamlalo() {
+            let x = setInterval(szamlal, 1000)
+            document.getElementById("start").style.display = "none"
+            document.getElementById("stop").style.display = "inline"
+
+        }
+        function stopszamlalo() {
+            clearInterval(x)
+            document.getElementById("start").style.display = "inline"
+            document.getElementById("stop").style.display = "none"
+        }
+    </script>
+</body>
+
+</html>

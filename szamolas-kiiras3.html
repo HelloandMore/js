@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="szamolas-kiiras3.js"></script>
+    <title>Számolás-kiírás3 külső JS</title>
+</head>
+
+<body>
+    <!-- 
+        input = adatbekérés (űrlapmezővel) -> text (string)
+        getElementById = id alapján elérhető egy-egy tag
+        value = érték (mező értéke vagy tartalma)
+        parseInt = egész számmá alakítás
+        parseFloat = lebegőpontos számmá alakítás
+        innerHTML = weboldalra kiírás egy adott id-jú HTML tagba
+        objektum.style.xxx = objektum stílusjegyeinek megadása
+        Math.xxx(par) = matematikai műveletek: .pow, .sqrt, .round, .ceil, .floor
+    -->    
+    
+    <!-- feladat:
+        fiúk és lányok számának bekérése,
+        összlétszám kiiratása,
+        fiú és lány arány kiiratása
+    -->
+    <h1>Számolás - kiírás3</h1>
+
+    <p>Ez a program bekéri a fiúk és lányok számát, majd kiírja az összlétszámot és a fiú-lány arányt.</p>
+
+    <p>
+        <label for="fiuk">Fiúk száma:</label>  
+        <input type="text" id="fiuk">
+    </p>
+
+    <p>
+        <label for="lanyok">Lányok száma:</label>  
+        <input type="text" id="lanyok">
+    </p>
+
+    <button id="gomb">Számolás indul</button>
+
+    <div id="error"></div>
+    <div id="ossz"></div>
+    <div id="arany"></div>
+</body>
+</html>

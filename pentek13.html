@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Péntek 13-ak</title>
+</head>
+<script>
+    var currentDate = new Date();
+    var currentYear = currentDate.getFullYear();
+    var dates = [];
+    for (var year = 1900; year <= currentYear; year++) {
+        var date = new Date(year, 0, 13);
+        if (date.getDay() === 5) {
+            dates.push(date.toLocaleDateString());
+        }
+    }
+    document.write(dates.join('<br>'));
+</script>
+<style>
+    body {
+        font-size: 1.5em;
+    }
+</style>
+<body>
+    
+</body>
+</html>

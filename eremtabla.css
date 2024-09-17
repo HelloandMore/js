@@ -1,0 +1,54 @@
+table {
+    background-color: rgb(180, 204, 200);
+    text-align: right;
+    width: 60vw;
+    table-layout: fixed; /*auto esetén a cellatartalomhoz igazodik, szóval kaka */
+}
+
+caption {
+    background-color: rgb(222, 219, 219);
+    border: 2px inset rgb(180, 204, 248);
+    margin-bottom: 20px;
+}
+
+#tablakontener {
+    background-color: rgb(247, 245, 159);
+    width: fit-content;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 3px 3px rgb(196, 195, 125);
+}
+
+table, th, td {
+    border: 1px solid rgb(222, 219, 219);
+    border-collapse: collapse;
+}
+
+tr:nth-child(odd) {
+    background-color: rgb(235, 235, 235);
+}
+
+tr:nth-child(even) {
+    background-color: rgb(168, 168, 168);
+}
+
+tr:hover td{
+    color: red;
+}
+
+th:nth-child(1) {
+    background-color: rgb(247, 245, 159);
+}
+
+th:nth-child(2) {
+    background-color: gold;
+}
+
+th:nth-child(3) {
+    background-color: silver;
+}
+
+th:nth-child(4) {
+    background-color: rgb(207, 139, 11);
+}

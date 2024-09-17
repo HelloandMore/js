@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Időzített kérdés + válasz</title>
+</head>
+<script>
+    /*Tegyünk fel öt kérdést és mérjük a válaszadás teljes idejét, illetve csak akkor jelenjen meg a következő kérdés, ha a megelőző kérdésre jól válaszolt a kitöltő - a kérdések választípusai legyenek változatosak (szót, számot, hosszabb kifejezést kelljen megadni vagy esetleg megadott válaszlehetőségek közül kelljen választani) */
+    var kerdesek = [
+        {
+            kerdes: "Hány éves vagy?",
+            tipus: "szám"
+        },
+        {
+            kerdes: "Milyen színű a szemed?",
+            tipus: "szöveg"
+        },
+        {
+            kerdes: "Milyen színű a hajad?",
+            tipus: "szöveg"
+        },
+        {
+            kerdes: "Milyen a kedvenc ételed?",
+            tipus: "szöveg"
+        },
+        {
+            kerdes: "Milyen a kedvenc színed?",
+            tipus: "szöveg"
+        }
+    ];
+    var valaszok = [];
+    var kerdesIndex = 0;
+    var kezdet = 0;
+    var vege = 0;
+    function kerdesMegjelenitese() {
+        if (kerdesIndex < kerdesek.length) {
+            document.write(kerdesek[kerdesIndex].kerdes + "<br>");
+            if (kerdesek[kerdesIndex].tipus == "szám") {
+                document.write("<input type='number' id='valasz'><br>");
+            } else {
+                document.write("<input type='text' id='valasz'><br>");
+            }
+            document.write("<button onclick='valaszEllenorzese()'>Válasz</button>");
+        } else {
+            vege = Date.now();
+            document.write("A kitöltési idő: " + (vege - kezdet) / 1000 + " másodperc");
+        }
+    }
+    function valaszEllenorzese() {
+        valaszok[kerdesIndex] = document.getElementById("valasz").value;
+        kerdesIndex++;
+        kerdesMegjelenitese();
+    }
+    kerdesMegjelenitese();
+    kezdet = Date.now();
+</script>
+<body>
+    <h1>Időzített kérdés + válasz</h1>
+    <script>
+        document.write("A kitöltési idő: " + (vege - kezdet) / 1000 + " másodperc");
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visszaszamlalo</title>
+    <style>
+        * {
+            background-color: black;
+            color: white;
+        }
+        #keret {
+            border: 2px double white;
+            width: fit-content;
+            display: flex;
+            align-content: center;
+            padding: 2vw 10vw;
+        }
+        #szamlalo {
+            border: 3px solid white;
+            box-shadow: 2px white;
+            margin-bottom: 2vw;
+            font-size: 50px;
+            text-align: center;
+            padding: 0vw 1vw;
+        }
+        #start,#stop,#reset {
+            width: 6vw;
+            height: 6vh;
+            font-size: 2vw;
+            text-align: center;
+            margin: auto;
+            border-radius: 20px;
+        }
+        #start{
+            background-color: green;
+        }
+        #stop{
+            background-color: red;
+            display: none;
+        }
+        #reset{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="keret">
+        
+        <div id="szamlalo"></div>
+
+        <button id="start" onclick="start()">Start</button>
+        <button id="stop" onclick="stop()">Stop</button>
+        <button id="reset" onclick="reset()">Reset</button>
+    </div>
+    <script>
+        let counter
+        let baseTime = 10
+        let time = baseTime
+
+        let stopStyle = document.getElementById("stop").style
+        let startStyle = document.getElementById("start").style
+        let resetStyle = document.getElementById("reset").style
+
+
+        let timer = document.getElementById("szamlalo")
+
+        let minutes = Math.floor(time/60)
+        let seconds = time%60
+
+        console.log(seconds)
+
+        if (seconds < 10){
+            timer.innerHTML = minutes + ":0" + seconds
+        }
+        else {
+            timer.innerHTML = minutes + ":" + seconds
+        }
+
+        function start(){
+            clearInterval(counter)
+            counter = setInterval(ora,1000)
+            stopStyle.display = "flex"
+            startStyle.display = "none"
+        }
+        
+        function stop(){
+            clearInterval(counter)
+            startStyle.display = "flex"
+            stopStyle.display = "none"
+        }
+
+        function reset(){
+            time = baseTime
+            stop()
+            if (seconds < 10){
+                timer.innerHTML = minutes + ":0" + seconds
+            }
+            else {
+                timer.innerHTML = minutes + ":" + seconds
+            }
+        }
+
+        function ora(){
+           
+            if (time <= 0){
+                stop()
+                startStyle.display = "none"
+                stopStyle.display = "none"
+            }
+            else{
+                time--
+
+                let minutes = Math.floor(time/60)
+                let seconds = time%60
+
+                if (seconds < 10){
+                timer.innerHTML = minutes + ":0" + seconds
+                }
+                else {
+                    timer.innerHTML = minutes + ":" + seconds
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>
