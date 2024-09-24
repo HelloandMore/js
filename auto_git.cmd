@@ -16,8 +16,6 @@ else /i if %selection%=="pull" or %selection%=="pul" or %selection=="2" (
 )
 
 :end
-if not %errorlevel%==0 (
-    net helpmsg %errorlevel%
-    timeout 5 /nobreak > nul
-    exit /b %errorlevel%
-)
+net helpmsg %errorlevel%
+timeout 5 /nobreak > nul
+exit /b %errorlevel%
