@@ -10,7 +10,7 @@ if /i %selection%=="push" or %selection%=="pus" or %selection%=="1" (
     git push
     goto :end
 )
-else /i if %selection%=="pull" or %selection%=="pul" or %selection=="2" (
+else /i if %selection%=="pull" or %selection%=="pul" or %selection%=="2" (
     git pull
     goto :end
 )
