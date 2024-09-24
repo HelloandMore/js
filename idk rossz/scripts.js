@@ -67,7 +67,10 @@ skipDivisibleBy3();
 
 // Task 7: Remaining Seconds in the Day
 function remainingSeconds() {
-    let currentHours = 14, currentMinutes = 34, currentSeconds = 42;
+    let currentDate = new Date();
+    let currentHours = currentDate.getHours();
+    let currentMinutes = currentDate.getMinutes();
+    let currentSeconds = currentDate.getSeconds();
     let totalSeconds = 24 * 3600;
     let elapsedSeconds = currentHours * 3600 + currentMinutes * 60 + currentSeconds;
     let remaining = totalSeconds - elapsedSeconds;
