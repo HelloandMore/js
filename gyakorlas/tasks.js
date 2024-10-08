@@ -21,7 +21,7 @@ let isLeap = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 console.log(isLeap ? "A megadott év szökőév." : "A megadott év nem szökőév.");
 
 // Task 4
-number = await input("Adj meg egy számot > ");
+number = parseInt(await input("Adj meg egy számot > "));
 let factorial = 1;
 for (let i = 1; i <= number; i++) {
     factorial *= i;
