@@ -1,4 +1,7 @@
 @echo off
+title Auto Git
+cd /d %~dp0
+:begin
 set /p selection="1. Push vagy 2. Pull > "
 
 if /i %selection%=="push" or %selection%=="pus" or %selection%=="1" (
@@ -13,6 +16,10 @@ if /i %selection%=="push" or %selection%=="pus" or %selection%=="1" (
 else /i if %selection%=="pull" or %selection%=="pul" or %selection%=="2" (
     git pull
     goto :end
+)
+else (
+    echo Hibás választás!
+    goto :begin
 )
 
 :end
