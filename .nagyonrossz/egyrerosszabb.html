@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Grid</title>
+    <style>
+        body {
+            background-color: #1f1f1f;
+            color: #ffffff;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            text-align: center;
+            background-color: #333333;
+            border: 1px solid #ffffff;
+        }
+        .grid-item {
+            border: 1px solid #ffffff;
+            padding: 10px;
+        }
+        button {
+            background-color: #ffffff;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>
+        <div class="grid-item">4</div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>
+        <div class="grid-item">7</div>
+        <div class="grid-item">8</div>
+        <div class="grid-item">9</div>
+    </div>
+    <button onclick="shuffleNumbers()">Randomizálás</button>
+    <script>
+        const gridItems = document.querySelectorAll('.grid-item');
+        const originalOrder = Array.from(gridItems).map(item => item.innerText);
+
+        function shuffleNumbers() {
+            const shuffledOrder = originalOrder.slice().sort(() => Math.random() - 0.5);
+            gridItems.forEach((item, index) => {
+                item.innerText = shuffledOrder[index];
+            });
+        }
+    </script>
+</body>
+</html>

@@ -7,7 +7,12 @@ function sortByLength(arr) {
 }
 
 function sortByLengthAsc(arr) {
-    return arr.sort((a, b) => a.localeCompare(b));
+    return arr.sort((a, b) => {
+        if (a.length === b.length) {
+            return a.localeCompare(b);
+        }
+        return a.length - b.length;
+    });
 }
 
 function sortFrom15(arr) {
@@ -35,7 +40,7 @@ function sigma(arr) {
 }
 
 const sortedByLength = sortByLength(names);
-const sortedByLengthAsc = sortByLengthAsc(names);
+const sortedByLengthAsc = sortByLengthAsc(fruits);
 const sortedFrom15 = sortFrom15(numbers);
 const asteriskAdded = addAsterisk(names);
 const between5And15Arr = between5And15(numbers);
@@ -51,4 +56,3 @@ console.log(between5And15Arr);
 console.log(isAllOddResult);
 console.log(hasEvenResult);
 console.log(sigmaResult);
-
