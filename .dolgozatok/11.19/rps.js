@@ -12,16 +12,7 @@ function stonePaperScissorsWinner(player1, player2) {
     }
 }
 
-function getRandomOption(options) {
-    const randomIndex = Math.floor(Math.random() * options.length);
-    return options[randomIndex];
-}
-
-const options = ['rock', 'paper', 'scissors'];
-
-// Run the game 5 times with random options
-for (let i = 0; i < 5; i++) {
-    const player1 = getRandomOption(options);
-    const player2 = getRandomOption(options);
-    console.log(stonePaperScissorsWinner(player1, player2));
-}
+// Examples
+console.log(stonePaperScissorsWinner('scissors', 'paper')); // "Player 1 won!"
+console.log(stonePaperScissorsWinner('scissors', 'rock')); // "Player 2 won!"
+console.log(stonePaperScissorsWinner('paper', 'paper')); // "Draw!"
