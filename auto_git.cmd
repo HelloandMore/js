@@ -1,6 +1,6 @@
 @echo off
 title Auto Git
-cd /d %~dp0
+pushd /d %~dp0
 :begin
 set /p selection="1. Push vagy 2. Pull > "
 
