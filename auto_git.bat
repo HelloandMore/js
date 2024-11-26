@@ -8,6 +8,7 @@ if %selection%==1 (
     git add .
     git status
     set /p commit="Commit message: "
+    echo %commit%
     git commit -m "%date% - %commit%"
     git push
 ) else if %selection%==2 (
