@@ -7,7 +7,7 @@ set /p selection="1. Push vagy 2. Pull > "
 if %selection%==1 (
     git add .
     git status
-    set /p commit=Commit message: 
+    set /p "commit=Commit message: "
     echo %commit%
     git commit -m "%date% - %commit%"
     git push
