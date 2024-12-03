@@ -81,11 +81,18 @@ async function updateFile() {
 
 
 // randomize 18 numbers between 1 and 6
-// randomNumbers = [];
-// for (let i = 0; i < 18; i++) {
-//     randomNumbers.push(Math.floor(Math.random() * 6) + 1);
-// }
-// writeToFile(randomNumbers.join(', '))
-//     .then(() => updateFile())
-//     .catch((err) => console.error(err));
+randomNumbers = [];
+for (let i = 0; i < 18; i++) {
+    randomNumbers.push(Math.floor(Math.random() * 6) + 1);
+}
+writeToFile(randomNumbers.join(', '))
+    .then(() => writeToFile('\n'))
+    .then(() => updateFile())
+    .catch((err) => console.error(err));
 updateFile();
+// 5. feladat random 18 szám fájlhoz adása sortöréssel
+for (let i = 0; i < 18; i++) {
+    randomNumbers.push(Math.floor(Math.random() * 6) + 1);
+}
+writeToFile(randomNumbers.join(', '))
+    .catch((err) => console.error(err));
