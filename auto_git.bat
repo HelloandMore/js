@@ -3,7 +3,8 @@ title Auto Git
 pushd "%~dp0"
 :begin
 set /p selection="1. Push vagy 2. Pull > "
-set /p commit="Commit esetén commit message > "
+set commit=""
+@REM set /p commit="Commit esetén commit message > "
 
 if %selection%==1 (
     git add .
