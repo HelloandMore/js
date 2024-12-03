@@ -15,7 +15,7 @@ for(let key in timeTable)
     numberOfHours = Math.abs(parseInt(await input(`Kérem a ${key} nap óraszámát: `)))
     for(let i = 0; i < numberOfHours; i++)
     {
-        ora = await input(`${i+1}. óra nevét > `)
+        ora = await input(`${i+1}. óra neve > `)
         timeTable[key].push(ora)
     }
 }
