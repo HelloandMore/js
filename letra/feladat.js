@@ -82,17 +82,13 @@ async function updateFile() {
 
 // randomize 18 numbers between 1 and 6
 randomNumbers = [];
+randomNumbers2 = [];
 for (let i = 0; i < 18; i++) {
     randomNumbers.push(Math.floor(Math.random() * 6) + 1);
 }
-writeToFile(randomNumbers.join(', '))
-    .then(() => writeToFile('\n'))
+for (let i = 0; i < 18; i++) {
+    randomNumbers2.push(Math.floor(Math.random() * 6) + 1);
+}
+writeToFile(randomNumbers.join(', ') + '\n' + randomNumbers2.join(', '))
     .then(() => updateFile())
-    .catch((err) => console.error(err));
-updateFile();
-// 5. feladat random 18 szám fájlhoz adása sortöréssel
-for (let i = 0; i < 18; i++) {
-    randomNumbers.push(Math.floor(Math.random() * 6) + 1);
-}
-writeToFile(randomNumbers.join(', '))
     .catch((err) => console.error(err));
