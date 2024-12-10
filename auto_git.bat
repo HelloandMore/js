@@ -1,26 +1,29 @@
 @echo off
 title Auto Git
 pushd "%~dp0"
+
 :begin
 set /p selection="1. Push vagy 2. Pull > "
-set commit=""
+@REM set commit=
 @REM set /p commit="Commit esetén commit message > "
 
 if %selection%==1 (
     git add .
     git status
-    set /p commit="Commit message: "
-    echo %commit%
-    git commit -m "%date% - %commit%"
-    git push
+    goto :commitpush
 ) else if %selection%==2 (
     git pull
-    goto end
+    goto :end
 ) else (
     echo Hibás választás!
-    goto begin
+    goto :begin
 )
 
+:commitpush
+set /p commit="Commit message: "
+echo %commit%
+git commit -m "%date% - %commit%"
+git push
 
 :end
 net helpmsg %errorlevel%
