@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Details</title>
+</head>
+<body>
+    <h1>User Details</h1>
+    <form id="userForm">
+        <label for="userId">User ID:</label>
+        <input type="number" id="userId" min="1" max="30">
+        <button type="submit">Get User Details</button>
+    </form>
+    <div id="userDetails"></div>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var userId = document.getElementById('userId').value;
+            fetch('https://jsonplaceholder.org/users/?id=' + userId)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(user => {
+                    var userDetails = document.getElementById('userDetails');
+                    userDetails.innerHTML = `
+                        <h2>User Details</h2>
+                        <p><strong>ID:</strong> ${user.id}</p>
+                        <p><strong>Name:</strong> ${user.firstname} ${user.lastname}</p>
+                        <p><strong>Phone:</strong> ${user.phone}</p>
+                        <p><strong>Email:</strong> ${user.email}</p>
+                        <p><strong>Address:</strong> ${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}</p>
+                        <p><strong>Geo:</strong> Lat: ${user.address.geo.lat}, Lng: ${user.address.geo.lng}</p>
+                        <p><strong>Website:</strong> ${user.website}</p>
+                        <p><strong>Company:</strong> ${user.company.name}, ${user.company.catchPhrase}, ${user.company.bs}</p>
+                    `;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        });
+    </script>
+</body>
+</html>
