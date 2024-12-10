@@ -21,7 +21,6 @@ if %selection%==1 (
 
 :commitpush
 set /p commit="Commit message: "
-echo %commit%
 git commit -m "%date% - %commit%"
 git push
 
