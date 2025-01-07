@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codewars User Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #4a4e69;
+            color: #fff;
+            padding: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+        form {
+            margin: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="text"] {
+            padding: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            width: 300px;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            background-color: #22223b;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            width: 300px;
+        }
+        .card h3 {
+            margin: 0 0 0.5rem 0;
+        }
+        .card p {
+            margin: 0.2rem 0;
+        }
+    </style>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Codewars User Data Viewer</h1>
+    </header>
+
+    <form id="user-form">
+        <input type="text" id="username" placeholder="Enter Codewars username" required>
+        <div>
+            <button type="submit">Fetch Data</button>
+            <button type="button" id="clear-button">Clear</button>
+        </div>
+    </form>
+
+    <div class="cards" id="cards-container">
+        <!-- User cards will appear here -->
+    </div>
+</body>
+</html>
