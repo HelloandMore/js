@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Course and Student Management</title>
+</head>
+
+
+<body>
+    <h1>Course and Student Management</h1>
+
+    <h2>Courses</h2>
+    <ul id="course-list">
+        <!-- Course list will be populated dynamically -->
+    </ul>
+    <button id="add-course">Add Course</button>
+
+    <h2>Students</h2>
+    <ul id="student-list">
+        <!-- Student list will be populated dynamically -->
+    </ul>
+    <button id="add-student">Add Student</button>
+
+    <script>
+        // Fetch courses from the API
+        fetch('https://vvri.pythonanywhere.com/api/courses')
+            .then(response => response.json())
+            .then(courses => {
+                const courseList = document.getElementById('course-list');
+                courses.forEach(course => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = course.name;
+
+                    // Add edit button for each course
+                    const editButton = document.createElement('button');
+                    editButton.textContent = 'Edit';
+                    editButton.addEventListener('click', () => {
+                        const newName = prompt('Enter the new name for the course:', course.name);
+                        if (newName) {
+                            // Send a PUT request to the API to update the course
+                            fetch(`https://vvri.pythonanywhere.com/api/courses/${course.id}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ name: newName })
+                            })
+                                .then(response => response.json())
+                                .then(updatedCourse => {
+                                    listItem.textContent = updatedCourse.name;
+                                });
+                        }
+                    });
+
+                    // Add delete button for each course
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.addEventListener('click', () => {
+                        deleteCourse(course.id);
+                        listItem.remove();
+                    });
+
+                    listItem.appendChild(editButton);
+                    listItem.appendChild(deleteButton);
+                    courseList.appendChild(listItem);
+                });
+            });
+
+        // Fetch students from the API
+        fetch('https://vvri.pythonanywhere.com/api/students')
+            .then(response => response.json())
+            .then(students => {
+                const studentList = document.getElementById('student-list');
+                students.forEach(student => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = student.name;
+
+                    // Add edit button for each student
+                    const editButton = document.createElement('button');
+                    editButton.textContent = 'Edit';
+                    editButton.addEventListener('click', () => {
+                        const newName = prompt('Enter the new name for the student:', student.name);
+                        if (newName) {
+                            // Send a PUT request to the API to update the student
+                            fetch(`https://vvri.pythonanywhere.com/api/students/${student.id}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ name: newName })
+                            })
+                                .then(response => response.json())
+                                .then(updatedStudent => {
+                                    listItem.textContent = updatedStudent.name;
+                                });
+                        }
+                    });
+
+                    // Add delete button for each student
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.addEventListener('click', () => {
+                        deleteStudent(student.id);
+                        listItem.remove();
+                    });
+
+                    listItem.appendChild(editButton);
+                    listItem.appendChild(deleteButton);
+                    studentList.appendChild(listItem);
+                });
+            });
+
+        // Add event listener for adding a new course
+        const addCourseButton = document.getElementById('add-course');
+        addCourseButton.addEventListener('click', () => {
+            const courseName = prompt('Enter the name of the new course:');
+            if (courseName) {
+                // Send a POST request to the API to create a new course
+                fetch('https://vvri.pythonanywhere.com/api/courses', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: courseName })
+                })
+                    .then(response => response.json())
+                    .then(newCourse => {
+                        const courseList = document.getElementById('course-list');
+                        const listItem = document.createElement('li');
+                        listItem.textContent = newCourse.name;
+
+                        // Add edit button for the new course
+                        const editButton = document.createElement('button');
+                        editButton.textContent = 'Edit';
+                        editButton.addEventListener('click', () => {
+                            const newName = prompt('Enter the new name for the course:', newCourse.name);
+                            if (newName) {
+                                // Send a PUT request to the API to update the course
+                                fetch(`https://vvri.pythonanywhere.com/api/courses/${newCourse.id}`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ name: newName })
+                                })
+                                    .then(response => response.json())
+                                    .then(updatedCourse => {
+                                        listItem.textContent = updatedCourse.name;
+                                    });
+                            }
+                        });
+
+                        // Add delete button for the new course
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+                        deleteButton.addEventListener('click', () => {
+                            deleteCourse(newCourse.id);
+                            listItem.remove();
+                        });
+
+                        listItem.appendChild(editButton);
+                        listItem.appendChild(deleteButton);
+                        courseList.appendChild(listItem);
+                    });
+            }
+        });
+
+        // Add event listener for adding a new student
+        const addStudentButton = document.getElementById('add-student');
+        addStudentButton.addEventListener('click', () => {
+            const studentName = prompt('Enter the name of the new student:');
+            if (studentName) {
+                // Send a POST request to the API to create a new student
+                fetch('https://vvri.pythonanywhere.com/api/students', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: studentName })
+                })
+                    .then(response => response.json())
+                    .then(newStudent => {
+                        const studentList = document.getElementById('student-list');
+                        const listItem = document.createElement('li');
+                        listItem.textContent = newStudent.name;
+
+                        // Add edit button for the new student
+                        const editButton = document.createElement('button');
+                        editButton.textContent = 'Edit';
+                        editButton.addEventListener('click', () => {
+                            const newName = prompt('Enter the new name for the student:', newStudent.name);
+                            if (newName) {
+                                // Send a PUT request to the API to update the student
+                                fetch(`https://vvri.pythonanywhere.com/api/students/${newStudent.id}`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ name: newName })
+                                })
+                                    .then(response => response.json())
+                                    .then(updatedStudent => {
+                                        listItem.textContent = updatedStudent.name;
+                                    });
+                            }
+                        });
+
+                        // Add delete button for the new student
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+                        deleteButton.addEventListener('click', () => {
+                            deleteStudent(newStudent.id);
+                            listItem.remove();
+                        });
+
+                        listItem.appendChild(editButton);
+                        listItem.appendChild(deleteButton);
+                        studentList.appendChild(listItem);
+                    });
+            }
+        });
+
+        // Function to delete a course
+        function deleteCourse(courseId) {
+            fetch(`https://vvri.pythonanywhere.com/api/courses/${courseId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Course deleted successfully');
+                    } else {
+                        console.error('Failed to delete course');
+                    }
+                })
+                .catch(error => {
+                    console.error('An error occurred while deleting the course:', error);
+                });
+        }
+
+        // Function to delete a student
+        function deleteStudent(studentId) {
+            fetch(`https://vvri.pythonanywhere.com/api/students/${studentId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Student deleted successfully');
+                    } else {
+                        console.error('Failed to delete student');
+                    }
+                })
+                .catch(error => {
+                    console.error('An error occurred while deleting the student:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>
