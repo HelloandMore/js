@@ -37,9 +37,9 @@
                     editButton.addEventListener('click', () => {
                         const newName = prompt('Enter the new name for the course:', course.name);
                         if (newName) {
-                            // Send a PUT request to the API to update the course
+                            // Send a PATCH request to the API to update the course
                             fetch(`https://vvri.pythonanywhere.com/api/courses/${course.id}`, {
-                                method: 'PUT',
+                                method: 'PATCH',
                                 headers: {
                                     'Content-Type': 'application/json'
                                 },
@@ -169,6 +169,7 @@
         const addStudentButton = document.getElementById('add-student');
         addStudentButton.addEventListener('click', () => {
             const studentName = prompt('Enter the name of the new student:');
+            const courseId = prompt('Enter the course id of the new student:');
             if (studentName) {
                 // Send a POST request to the API to create a new student
                 fetch('https://vvri.pythonanywhere.com/api/students', {
@@ -176,7 +177,7 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ name: studentName })
+                    body: JSON.stringify({ name: studentName, course_id: courseId })
                 })
                     .then(response => response.json())
                     .then(newStudent => {
