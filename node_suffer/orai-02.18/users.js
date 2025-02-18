@@ -37,11 +37,16 @@ app.post('/users', (req, res) => {
 // PUT /users/:id - update user by id
 app.put('/users/:id', (req, res) => {
     const id = parseInt(req.params.id);
+    const { firstName, lastName } = req.body;
     if (id >= 0 && id < users.length) {
-        users[id] = req.body;
-        res.json(users[id]);
+        if (firstName && lastName) {
+            users[id] = { firstName, lastName };
+            res.status(201).json(users[id]);
+        } else {
+            res.status(400).json({ message: "Both firstName and lastName are required" });
+        }
     } else {
-        res.json({ message: "User not found" });
+        res.status(404).json({ message: "User not found" });
     }
 });
 
