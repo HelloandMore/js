@@ -53,6 +53,7 @@ app.delete('/movies/:id', (req, res) => {
     res.json(deletedMovie);
 });
 
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
