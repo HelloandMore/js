@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Órarend</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .timetable { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+        .day-column { border: 1px solid #ddd; padding: 10px; }
+        .lesson { background: #f0f0f0; margin: 5px; padding: 10px; position: relative; }
+        .delete-btn { position: absolute; top: 5px; right: 5px; cursor: pointer; }
+        form { margin-bottom: 20px; padding: 20px; background: #eee; }
+        input, select { margin: 5px; padding: 8px; }
+    </style>
+</head>
+<body>
+    <h1>Órarend Szerkesztő</h1>
+    
+    <form id="lessonForm">
+        <select id="day" required>
+            <option value="">Válassz napot</option>
+            <option>Hétfő</option>
+            <option>Kedd</option>
+            <option>Szerda</option>
+            <option>Csütörtök</option>
+            <option>Péntek</option>
+        </select>
+        
+        <input type="time" id="time" required>
+        <input type="text" id="subject" placeholder="Tantárgy" required>
+        <input type="text" id="classroom" placeholder="Terem">
+        <button type="submit">Mentés</button>
+    </form>
+
+    <div class="timetable" id="timetable"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

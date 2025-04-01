@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Varázsló Manager</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .wizard { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+        form { margin-bottom: 20px; }
+        input { margin: 5px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Varázslók Kezelése</h1>
+    
+    <form id="wizardForm">
+        <input type="text" id="name" placeholder="Név" required>
+        <input type="text" id="magicWand" placeholder="Varázspálca" required>
+        <input type="text" id="house" placeholder="Ház" required>
+        <button type="submit">Mentés</button>
+    </form>
+
+    <div id="wizards"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
