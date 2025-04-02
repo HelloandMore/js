@@ -50,15 +50,14 @@ app.get('/lessons', async (req, res) => {
 
 // Óra keresése ID alapján
 app.get('/lessons/:id', async (req, res) => {
-    try {
-        const lesson = await Lesson.findByPk(req.params.id);
-        if (!lesson) return res.status(404).json({ error: 'Óra nem található' });
-        res.json(lesson);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-    }
-);
+  try {
+    const lesson = await Lesson.findByPk(req.params.id);
+    if (!lesson) return res.status(404).json({ error: 'Óra nem található' });
+    res.json(lesson);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // Új óra
 app.post('/lessons', async (req, res) => {
