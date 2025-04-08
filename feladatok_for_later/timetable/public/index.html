@@ -1,22 +1,99 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Órarend</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .timetable { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-        .day-column { border: 1px solid #ddd; padding: 10px; }
-        .lesson { background: #f0f0f0; margin: 5px; padding: 10px; position: relative; }
-        .delete-btn { position: absolute; top: 5px; right: 5px; cursor: pointer; }
-        form { margin-bottom: 20px; padding: 20px; background: #eee; }
-        input, select { margin: 5px; padding: 8px; }
+        :root {
+            --background-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #f0f0f0;
+            --border-color: #dddddd;
+            --form-bg: #eeeeee;
+        }
+
+        input,
+        select {
+            margin: 5px;
+            padding: 8px;
+        }
+
+        .dark-theme {
+            --background-color: #1a1a1a;
+            --text-color: #ffffff;
+            --card-bg: #2d2d2d;
+            --border-color: #404040;
+            --form-bg: #333333;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            cursor: pointer;
+            color: var(--text-color);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+        }
+
+        .timetable {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .day-column {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+        }
+
+        .lesson {
+            background: var(--card-bg);
+            margin: 5px;
+            padding: 10px;
+            position: relative;
+            color: var(--text-color);
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+        }
+
+        form {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--form-bg);
+        }
+
+        input,
+        select {
+            margin: 5px;
+            padding: 8px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
     </style>
 </head>
-<body>
+
+<body> <button class="theme-switch" id="themeSwitch">🌓 Téma váltás</button>
     <h1>Órarend Szerkesztő</h1>
-    
+
     <form id="lessonForm">
         <select id="day" required>
             <option value="">Válassz napot</option>
@@ -26,7 +103,7 @@
             <option>Csütörtök</option>
             <option>Péntek</option>
         </select>
-        
+
         <input type="time" id="time" required>
         <input type="text" id="subject" placeholder="Tantárgy" required>
         <input type="text" id="classroom" placeholder="Terem">
@@ -37,4 +114,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

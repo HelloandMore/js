@@ -1,30 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Téma váltó logika
+    const themeSwitch = document.getElementById('themeSwitch');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.body.classList.add(savedTheme);
+    }
+    
+    themeSwitch.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        const currentTheme = document.body.classList.contains('dark-theme') ? 'dark-theme' : '';
+        localStorage.setItem('theme', currentTheme);
+    });
     const form = document.getElementById('lessonForm');
     const timetable = document.getElementById('timetable');
     let editId = null;
 
     // Órarend betöltése
     async function loadTimetable() {
-        const response = await fetch('/lessons');
-        const lessons = await response.json();
-        
-        const days = ['Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek'];
-        timetable.innerHTML = days.map(day => `
-            <div class="day-column">
-                <h3>${day}</h3>
-                ${lessons.filter(lesson => lesson.day === day)
+        try {
+            const response = await fetch('/lessons');
+            const lessons = await response.json();
+
+            const days = ['Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek'];
+            timetable.innerHTML = days.map(day => `
+                <div class="day-column">
+                    <h3>${day}</h3>
+                    ${lessons.filter(lesson => lesson.day === day)
                     .sort((a, b) => a.time.localeCompare(b.time))
                     .map(lesson => `
-                        <div class="lesson">
-                            <span class="delete-btn" onclick="deleteLesson('${lesson.id}')">🗑️</span>
-                            <div><strong>${lesson.time}</strong></div>
-                            <div>${lesson.subject}</div>
-                            ${lesson.classroom ? `<div>${lesson.classroom}</div>` : ''}
-                            <button onclick="editLesson('${lesson.id}')">Szerkesztés</button>
-                        </div>
-                    `).join('')}
-            </div>
-        `).join('');
+                            <div class="lesson">
+                                <span class="delete-btn" onclick="deleteLesson('${lesson.id}')">🗑️</span>
+                                <div><strong>${lesson.time}</strong></div>
+                                <div>${lesson.subject}</div>
+                                ${lesson.classroom ? `<div>${lesson.classroom}</div>` : ''}
+                                <button onclick="editLesson('${lesson.id}')">Szerkesztés</button>
+                            </div>
+                        `).join('')}
+                </div>
+            `).join('');
+        } catch (error) {
+            console.log('Hiba történt az órarend betöltésekor:', error);
+            alert('Nem sikerült betölteni az órarendet. Kérlek, frissítsd az oldalt.');
+        }
     }
 
     // Űrlap kezelése
@@ -64,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Törlés
     window.deleteLesson = async (id) => {
+        if (!confirm('Biztosan törölni szeretnéd ezt az órát?')) return;
         await fetch(`/lessons/${id}`, { method: 'DELETE' });
         loadTimetable();
     };

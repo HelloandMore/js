@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Törlés
     window.deleteWizard = async (id) => {
+        if (!confirm('Biztosan törölni szeretnéd ezt a varázslót?')) return;
         await fetch(`/wizard/${id}`, { method: 'DELETE' });
         loadWizards();
     };
