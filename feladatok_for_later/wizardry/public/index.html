@@ -1,17 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Varázsló Manager</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .wizard { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
-        form { margin-bottom: 20px; }
-        input { margin: 5px; padding: 5px; }
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --border-color: #cccccc;
+            --card-bg: #f8f9fa;
+            --input-bg: #ffffff;
+        }
+
+        .dark-theme {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --border-color: #4d4d4d;
+            --card-bg: #2d2d2d;
+            --input-bg: #333333;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            cursor: pointer;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-color);
+        }
+
+        .wizard {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            margin: 10px 0;
+            background-color: var(--card-bg);
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input {
+            margin: 5px;
+            padding: 5px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
     </style>
 </head>
-<body>
+
+<body> <button class="theme-switch" id="themeSwitch">🌓 Téma</button>
     <h1>Varázslók Kezelése</h1>
-    
     <form id="wizardForm">
         <input type="text" id="name" placeholder="Név" required>
         <input type="text" id="magicWand" placeholder="Varázspálca" required>
@@ -23,4 +74,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

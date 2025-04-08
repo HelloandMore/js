@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Téma váltó inicializálása
+    const themeSwitch = document.getElementById('themeSwitch');
+    const savedTheme = localStorage.getItem('theme');
+    // Alapértelmezett téma betöltése
+    if (savedTheme) {
+        document.body.classList.add(savedTheme);
+    }
+
+    // Téma váltás eseménykezelő
+    themeSwitch.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        const currentTheme = document.body.classList.contains('dark-theme') ? 'dark-theme' : '';
+        localStorage.setItem('theme', currentTheme);
+    });
     const form = document.getElementById('albumForm');
     const albumContainer = document.getElementById('albumContainer');
     const formTitle = document.getElementById('form-title');
@@ -10,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('/albums');
             const albums = await response.json();
-            
+
             albumContainer.innerHTML = albums.map(album => `
                 <div class="album-card" data-id="${album.id}">
                     <h3>${album.title}</h3>
@@ -32,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Űrlap kezelése
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const albumData = {
             band: document.getElementById('band').value,
             title: document.getElementById('title').value,
@@ -58,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             resetForm();
+            alert('Mentés sikeres!');
             loadAlbums();
         } catch (error) {
             console.error('Hiba:', error);
@@ -78,14 +93,14 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(`/albums/${id}`);
             const album = await response.json();
-            
+
             document.getElementById('albumId').value = album.id;
             document.getElementById('band').value = album.band;
             document.getElementById('title').value = album.title;
             document.getElementById('year').value = album.year;
             document.getElementById('genre').value = album.genre;
             document.getElementById('rating').value = album.rating || '';
-            
+
             currentAlbumId = album.id;
             formTitle.textContent = 'Album Szerkesztése';
             cancelBtn.style.display = 'block';
@@ -97,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Törlés
     window.deleteAlbum = async (id) => {
         if (!confirm('Biztosan törölni szeretnéd ezt az albumot?')) return;
-        
+
         try {
             const response = await fetch(`/albums/${id}`, {
                 method: 'DELETE'

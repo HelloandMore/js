@@ -1,113 +1,96 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Album Kollekció</title>
     <style>
+        :root {
+            --bg-color: #f5f5f5;
+            --text-color: #333;
+            --card-bg: white;
+            --border-color: #ddd;
+            --input-bg: white;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --card-bg: #2d2d2d;
+            --border-color: #404040;
+            --input-bg: #333333;
+            --shadow-color: rgba(255, 255, 255, 0.1);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
         }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
+
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            cursor: pointer;
+            color: var(--text-color);
+            z-index: 1000;
         }
+
         .album-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
+
         .album-card {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px var(--shadow-color);
             padding: 20px;
             transition: transform 0.3s;
         }
-        .album-card:hover {
-            transform: translateY(-5px);
-        }
-        .album-card h3 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
-        .album-card p {
-            margin: 5px 0;
-            color: #555;
-        }
-        .rating {
-            color: #e67e22;
-            font-weight: bold;
-        }
+
         .form-container {
-            background-color: white;
+            background-color: var(--card-bg);
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px var(--shadow-color);
             margin-bottom: 30px;
         }
-        form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+
+        input,
+        select {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
+
         button {
             background-color: #3498db;
             color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
         }
-        button:hover {
-            background-color: #2980b9;
-        }
-        .form-actions {
-            grid-column: span 2;
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
+
         .delete-btn {
             background-color: #e74c3c;
         }
-        .delete-btn:hover {
-            background-color: #c0392b;
-        }
-        .card-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-        }
     </style>
 </head>
-<body>
+
+<body> <button class="theme-switch" id="themeSwitch">🌓 Téma</button>
     <h1>Album Kollekció</h1>
-    
+
     <div class="form-container">
         <h2 id="form-title">Új Album Hozzáadása</h2>
         <form id="albumForm">
@@ -143,4 +126,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
