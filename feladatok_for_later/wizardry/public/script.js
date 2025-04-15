@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Téma váltó inicializálása
+    const themeSwitch = document.getElementById('themeSwitch');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.body.classList.add(savedTheme);
+    }
+
+    themeSwitch.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        const currentTheme = document.body.classList.contains('dark-theme') ? 'dark-theme' : '';
+        localStorage.setItem('theme', currentTheme);
+    });
     const form = document.getElementById('wizardForm');
     const wizardsDiv = document.getElementById('wizards');
     let currentWizardId = null;
@@ -43,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         form.reset();
         currentWizardId = null;
+        alert('Mentés sikeres!');
         loadWizards();
     });
 

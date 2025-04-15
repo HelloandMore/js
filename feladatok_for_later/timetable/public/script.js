@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         form.reset();
         editId = null;
+        alert('Mentés sikeres!');
         loadTimetable();
     });
 
