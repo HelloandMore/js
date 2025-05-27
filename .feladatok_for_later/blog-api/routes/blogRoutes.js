@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
+import db from '../database/db.js';
+import moment from 'moment';
+
 const router = express.Router();
-const db = require('../database/db');
-const moment = require('moment');
 
 // Helper function to format dates
 function formatDates(blogs) {
@@ -191,8 +192,8 @@ router.get('/blog/:id', (req, res) => {
     });
   } catch (error) {
     console.error('Error fetching blog:', error);
-    res.status(500).send('Hiba történt a blog bejegyzés lekérése közben');
+    res.status(500).send('Hiba történt a blog bejegyzés lekérése közben');  
   }
 });
 
-module.exports = router;
+export default router;

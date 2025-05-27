@@ -1,11 +1,15 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const path = require('path');
-const expressLayouts = require('express-ejs-layouts');
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import path from 'path';
+import expressLayouts from 'express-ejs-layouts';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Import routes
-const blogRoutes = require('./routes/blogRoutes');
+import blogRoutes from './routes/blogRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;

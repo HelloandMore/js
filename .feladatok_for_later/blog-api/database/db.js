@@ -1,6 +1,10 @@
-const Database = require('better-sqlite3');
-const path = require('path');
-const moment = require('moment');
+import Database from 'better-sqlite3';
+import path from 'path';
+import moment from 'moment';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Initialize the database
 const db = new Database(path.join(__dirname, 'blog.db'));
@@ -110,4 +114,4 @@ function initializeDatabase() {
 initializeDatabase();
 
 // Export the database
-module.exports = db;
+export default db;
