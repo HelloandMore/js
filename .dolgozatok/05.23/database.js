@@ -1,6 +1,9 @@
 import Database from 'better-sqlite3';
 
 const db = new Database('books.db');
+
+// Az exec() SQL utasításokat hajt végre eredmény visszaadása nélkül.
+// Itt használjuk a táblaszerkezet létrehozásához, ha az nem létezik.
 db.exec(`
   CREATE TABLE IF NOT EXISTS books (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
