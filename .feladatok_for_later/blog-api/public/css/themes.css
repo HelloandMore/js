@@ -1,0 +1,143 @@
+/* Light Theme (default) */
+:root {
+  --bg-color: #f8f9fa;
+  --text-color: #212529;
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.125);
+  --navbar-bg: #343a40;
+  --navbar-color: #ffffff;
+  --footer-bg: #343a40;
+  --footer-color: #ffffff;
+  --primary-btn: #0d6efd;
+  --primary-btn-hover: #0b5ed7;
+  --muted-text: #6c757d;
+  --badge-bg: #6c757d;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #f8f9fa;
+  --card-bg: #1e1e1e;
+  --card-border: rgba(255, 255, 255, 0.125);
+  --navbar-bg: #212529;
+  --navbar-color: #f8f9fa;
+  --footer-bg: #212529;
+  --footer-color: #f8f9fa;
+  --primary-btn: #375a7f;
+  --primary-btn-hover: #2b4764;
+  --muted-text: #adb5bd;
+  --badge-bg: #495057;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.navbar {
+  background-color: var(--navbar-bg) !important;
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link {
+  color: var(--navbar-color) !important;
+}
+
+footer {
+  background-color: var(--footer-bg) !important;
+  color: var(--footer-color) !important;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
+}
+
+.card-header, .card-footer {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .card-header, 
+[data-theme="dark"] .card-footer {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-primary {
+  background-color: var(--primary-btn);
+  border-color: var(--primary-btn);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-btn-hover);
+  border-color: var(--primary-btn-hover);
+}
+
+/* Theme Switcher Styles */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.theme-switch {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 34px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Text styles for theme compatibility */
+.text-muted {
+  color: var(--muted-text) !important;
+}
+
+.badge.bg-secondary {
+  background-color: var(--badge-bg) !important;
+}
+
+/* Date and author labels */
+.card-footer small, 
+.card-subtitle,
+.date-label,
+.author-label {
+  color: var(--muted-text) !important;
+}

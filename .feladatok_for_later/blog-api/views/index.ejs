@@ -1,0 +1,38 @@
+<h1 class="mb-4">Blog bejegyzések</h1>
+
+<a href="/blog/new" class="btn btn-primary mb-4">Új bejegyzés létrehozása</a>
+
+<% if (blogs.length === 0) { %>
+  <div class="alert alert-info">
+    Nincs még blog bejegyzés. Hozz létre egyet!
+  </div>
+<% } else { %>
+  <div class="row">
+    <% blogs.forEach(blog => { %>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <div class="card-header">
+            <span class="badge bg-secondary"><%= blog.category %></span>          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+            <h6 class="card-subtitle mb-2">
+              <span class="author-label">Szerző: <%= blog.author_name %></span>
+            </h6>
+            <p class="card-text"><%= blog.content.length > 150 ? blog.content.substring(0, 150) + '...' : blog.content %></p>
+          </div>
+          <div class="card-footer">
+            <small>
+              <span class="date-label">Létrehozva: <%= blog.formattedCreatedAt %></span><br>
+              <span class="date-label">Módosítva: <%= blog.formattedUpdatedAt %></span>
+            </small>
+            <div class="mt-2">
+              <a href="/blog/<%= blog.id %>" class="btn btn-sm btn-info">Megtekintés</a>
+              <a href="/blog/edit/<%= blog.id %>" class="btn btn-sm btn-warning">Szerkesztés</a>
+              <a href="/blog/delete/<%= blog.id %>" class="btn btn-sm btn-danger" onclick="return confirm('Biztosan törölni szeretnéd ezt a bejegyzést?')">Törlés</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+<% } %>

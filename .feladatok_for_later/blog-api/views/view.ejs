@@ -1,0 +1,31 @@
+<div class="mb-4">
+  <a href="/" class="btn btn-secondary">Vissza a főoldalra</a>
+</div>
+
+<div class="card mb-4">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h1 class="h3 mb-0"><%= blog.title %></h1>
+    <span class="badge bg-secondary"><%= blog.category %></span>  </div>
+  
+  <div class="card-body">
+    <h6 class="card-subtitle mb-3">
+      <span class="author-label">Szerző: <%= blog.author_name %></span>
+    </h6>
+    
+    <p class="card-text"><%= blog.content %></p>
+    
+    <div class="mt-4">
+      <small>
+        <span class="date-label">Létrehozva: <%= blog.formattedCreatedAt %></span><br>
+        <span class="date-label">Módosítva: <%= blog.formattedUpdatedAt %></span>
+      </small>
+    </div>
+  </div>
+  
+  <div class="card-footer">
+    <div class="d-flex gap-2">
+      <a href="/blog/edit/<%= blog.id %>" class="btn btn-warning">Szerkesztés</a>
+      <a href="/blog/delete/<%= blog.id %>" class="btn btn-danger" onclick="return confirm('Biztosan törölni szeretnéd ezt a bejegyzést?')">Törlés</a>
+    </div>
+  </div>
+</div>

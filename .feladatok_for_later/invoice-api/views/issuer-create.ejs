@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header">
+        <h3>Új kiállító létrehozása</h3>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="/issuers/create">
+            <div class="mb-3">
+                <label for="name" class="form-label">Kiállító neve</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="address" class="form-label">Cím</label>
+                <input type="text" class="form-control" id="address" name="address" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="tax_number" class="form-label">Adószám</label>
+                <input type="text" class="form-control" id="tax_number" name="tax_number" placeholder="12345678-1-23" required>
+            </div>
+            
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Kiállító létrehozása</button>
+                <a href="/issuers" class="btn btn-secondary">Mégse</a>
+            </div>
+        </form>
+    </div>
+</div>

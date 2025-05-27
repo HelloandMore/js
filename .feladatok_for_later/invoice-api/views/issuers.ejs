@@ -1,0 +1,40 @@
+<div class="row mb-4">
+    <div class="col-md-6">
+        <h2>Kiállítók listája</h2>
+    </div>
+    <div class="col-md-6 text-end">
+        <a href="/issuers/create" class="btn btn-primary">Új kiállító létrehozása</a>
+    </div>
+</div>
+
+<% if (issuers && issuers.length > 0) { %>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Név</th>
+                    <th>Cím</th>
+                    <th>Adószám</th>
+                    <th>Műveletek</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% issuers.forEach(issuer => { %>
+                    <tr>
+                        <td><%= issuer.name %></td>
+                        <td><%= issuer.address %></td>
+                        <td><%= issuer.tax_number %></td>                        <td>
+                            <a href="/issuers/view/<%= issuer.id %>" class="btn btn-sm btn-info">Megtekintés</a>
+                            <a href="/issuers/edit/<%= issuer.id %>" class="btn btn-sm btn-warning">Szerkesztés</a>
+                            <a href="/issuers/delete/<%= issuer.id %>" class="btn btn-sm btn-danger" onclick="return confirm('Biztosan törölni szeretné ezt a kiállítót?')">Törlés</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+<% } else { %>
+    <div class="alert alert-info">
+        Nincs kiállító az adatbázisban. <a href="/issuers/create">Új kiállító létrehozása</a>.
+    </div>
+<% } %>

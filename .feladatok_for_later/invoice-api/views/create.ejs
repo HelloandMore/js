@@ -1,0 +1,98 @@
+<div class="card">
+    <div class="card-header">
+        <h3>Új számla létrehozása</h3>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="/create">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="issuer_id" class="form-label">Kiállító</label>
+                        <select class="form-select" id="issuer_id" name="issuer_id" required>
+                            <option value="" selected disabled>Válasszon kiállítót</option>
+                            <% issuers.forEach(issuer => { %>
+                                <option value="<%= issuer.id %>"><%= issuer.name %> - <%= issuer.tax_number %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="customer_id" class="form-label">Vevő</label>
+                        <select class="form-select" id="customer_id" name="customer_id" required>
+                            <option value="" selected disabled>Válasszon vevőt</option>
+                            <% customers.forEach(customer => { %>
+                                <option value="<%= customer.id %>"><%= customer.name %> - <%= customer.tax_number %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                </div>
+            </div>            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="invoice_number" class="form-label">Számla száma</label>
+                        <input type="text" class="form-control" id="invoice_number" name="invoice_number" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="issue_date" class="form-label">Számla kelte</label>
+                        <input type="date" class="form-control" id="issue_date" name="issue_date" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="fulfillment_date" class="form-label">Teljesítés dátuma</label>
+                        <input type="date" class="form-control" id="fulfillment_date" name="fulfillment_date" required>
+                    </div>                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="due_date" class="form-label">Fizetési határidő</label>
+                        <input type="date" class="form-control" id="due_date" name="due_date" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="total_amount" class="form-label">Végösszeg (Ft)</label>
+                        <input type="number" class="form-control" id="total_amount" name="total_amount" min="0" step="0.01" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="vat_rate" class="form-label">ÁFA kulcs</label>
+                        <select class="form-select" id="vat_rate" name="vat_rate" required>
+                            <option value="0.05">5%</option>
+                            <option value="0.18">18%</option>
+                            <option value="0.27" selected>27%</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Számla létrehozása</button>
+                <a href="/" class="btn btn-secondary">Mégse</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Set today's date as default for issue date
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('issue_date').value = today;
+        document.getElementById('fulfillment_date').value = today;
+        
+        // Set due date as today + 15 days
+        const dueDate = new Date();
+        dueDate.setDate(dueDate.getDate() + 15);
+        document.getElementById('due_date').value = dueDate.toISOString().split('T')[0];
+    });
+</script>

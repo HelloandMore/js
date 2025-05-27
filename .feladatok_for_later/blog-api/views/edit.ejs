@@ -1,0 +1,71 @@
+<h1 class="mb-4">Blog bejegyzés szerkesztése</h1>
+
+<div class="card">
+  <div class="card-body">
+    <form action="/blog/update/<%= blog.id %>" method="POST">      <div class="mb-3">
+        <label for="author_select" class="form-label">Szerző kiválasztása vagy létrehozása</label>
+        <div class="d-flex">
+          <select class="form-select me-2" id="author_select" onchange="toggleAuthorInput()">
+            <option value="existing" selected>Létező szerző</option>
+            <option value="new">Új szerző létrehozása</option>
+          </select>
+        </div>
+      </div>
+      
+      <div id="existing-author" class="mb-3">
+        <label for="author_id" class="form-label">Létező szerző</label>
+        <select class="form-select" id="author_id" name="author_id">
+          <% users.forEach(user => { %>
+            <option value="<%= user.id %>" <%= blog.author_id === user.id ? 'selected' : '' %>><%= user.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      
+      <div id="new-author" class="mb-3" style="display: none;">
+        <label for="new_author_name" class="form-label">Új szerző neve</label>
+        <input type="text" class="form-control" id="new_author_name" name="new_author_name">
+      </div>
+      
+      <script>
+        function toggleAuthorInput() {
+          const selection = document.getElementById('author_select').value;
+          
+          if (selection === 'existing') {            document.getElementById('existing-author').style.display = 'block';
+            document.getElementById('new-author').style.display = 'none';
+            document.getElementById('author_id').setAttribute('required', '');
+            document.getElementById('new_author_name').removeAttribute('required');
+            // Make sure author_id is active and new_author_name is not
+            document.getElementById('new_author_name').value = '';
+          } else {
+            document.getElementById('existing-author').style.display = 'none';
+            document.getElementById('new-author').style.display = 'block';
+            document.getElementById('author_id').removeAttribute('required');
+            document.getElementById('new_author_name').setAttribute('required', '');
+            // Make sure author_id is not active by setting it to empty
+            document.getElementById('author_id').value = '';
+          }
+        }
+      </script>
+      
+      <div class="mb-3">
+        <label for="title" class="form-label">Cím</label>
+        <input type="text" class="form-control" id="title" name="title" value="<%= blog.title %>" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="category" class="form-label">Kategória</label>
+        <input type="text" class="form-control" id="category" name="category" value="<%= blog.category %>" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="content" class="form-label">Tartalom</label>
+        <textarea class="form-control" id="content" name="content" rows="6" required><%= blog.content %></textarea>
+      </div>
+      
+      <div class="d-flex justify-content-between">
+        <a href="/" class="btn btn-secondary">Vissza</a>
+        <button type="submit" class="btn btn-primary">Mentés</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="hu" data-theme="light">
+<head>
+  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | Blog API</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/themes.css">
+</head>
+<body>
+  <%- include('./partials/header') %>
+  
+  <div class="container mt-4">
+    <%- body %>
+  </div>
+  <%- include('./partials/footer') %>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Check for saved theme preference or use default (light)
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // Update checkbox state based on current theme
+    if (currentTheme === 'dark') {
+      document.getElementById('theme-switch').checked = true;
+    }
+    
+    // Theme switch handler
+    function switchTheme(e) {
+      if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    
+    // Add event listener to theme switch checkbox
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleSwitch = document.getElementById('theme-switch');
+      if (toggleSwitch) {
+        toggleSwitch.addEventListener('change', switchTheme, false);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<div class="row mb-4">
+    <div class="col">
+        <a href="/" class="btn btn-secondary mb-3">Vissza a listához</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header bg-primary text-white d-flex justify-content-between">
+        <h3>Számla #<%= invoice.invoice_number %></h3>
+        <div>
+            <a href="/edit/<%= invoice.id %>" class="btn btn-warning">Szerkesztés</a>
+            <a href="/delete/<%= invoice.id %>" class="btn btn-danger" onclick="return confirm('Biztosan törölni szeretné ezt a számlát?')">Törlés</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <strong>Kiállító adatai</strong>
+                    </div>
+                    <div class="card-body">
+                        <h5><%= invoice.issuer_name %></h5>
+                        <p class="mb-1"><strong>Cím:</strong> <%= invoice.issuer_address %></p>
+                        <p class="mb-0"><strong>Adószám:</strong> <%= invoice.issuer_tax_number %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <strong>Vevő adatai</strong>
+                    </div>
+                    <div class="card-body">
+                        <h5><%= invoice.customer_name %></h5>
+                        <p class="mb-1"><strong>Cím:</strong> <%= invoice.customer_address %></p>
+                        <p class="mb-0"><strong>Adószám:</strong> <%= invoice.customer_tax_number %></p>
+                    </div>
+                </div>
+            </div>
+        </div>        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <strong>Számla részletei</strong>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Számla száma:</strong> <%= invoice.invoice_number %></li>
+                            <li class="list-group-item"><strong>Számla kelte:</strong> <%= invoice.issue_date %></li>
+                            <li class="list-group-item"><strong>Teljesítés dátuma:</strong> <%= invoice.fulfillment_date %></li>
+                            <li class="list-group-item"><strong>Fizetési határidő:</strong> <%= invoice.due_date %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <strong>Pénzügyi adatok</strong>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Nettó összeg:</strong> <%= invoice.total_amount.toLocaleString() %> Ft</li>
+                            <li class="list-group-item"><strong>ÁFA kulcs:</strong> <%= (invoice.vat_rate * 100).toFixed(0) %>%</li>
+                            <li class="list-group-item"><strong>ÁFA összege:</strong> <%= invoice.vat_amount.toLocaleString() %> Ft</li>
+                            <li class="list-group-item bg-success text-white"><strong>Bruttó végösszeg:</strong> <%= (invoice.total_amount + invoice.vat_amount).toLocaleString() %> Ft</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
