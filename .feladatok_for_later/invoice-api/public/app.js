@@ -43,8 +43,7 @@ async function betoltSzamlak() {
                 <td>
                     <button class="btn btn-danger btn-sm" onclick="szamlaTorles(${szamla.id})">
                         <i class="fas fa-trash"></i>
-                    </button>
-                    <button class="btn btn-info btn-sm ms-1" onclick="szamlaReszletek(${szamla.id})" data-bs-toggle="modal" data-bs-target="#szamlaReszletekModal">
+                    </button>                    <button class="btn btn-info btn-sm ms-1" onclick="szamlaReszletek(${szamla.id})">
                         <i class="fas fa-eye"></i>
                     </button>
                 </td>
@@ -237,6 +236,96 @@ async function szamlaTorles(id) {
     } catch (error) {
         console.error('Hiba a számla törlésekor:', error);
         alert('Hiba történt a számla törlésekor!');
+    }
+}
+
+// Számla részletek megjelenítése
+async function szamlaReszletek(id) {
+    try {
+        const response = await fetch(`${API_BASE}/szamlak/${id}`);
+        const szamla = await response.json();
+        
+        if (response.ok) {
+            const tartalom = document.getElementById('szamlaReszletekTartalom');
+            tartalom.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-file-invoice me-2"></i>Számla adatok</h6>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>Számla száma:</strong></td>
+                                <td>${szamla.szamla_szama}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Számla kelte:</strong></td>
+                                <td>${formatDatum(szamla.szamla_kelte)}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Teljesítés dátuma:</strong></td>
+                                <td>${formatDatum(szamla.teljesites_datuma)}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fizetési határidő:</strong></td>
+                                <td class="${new Date(szamla.fizetesi_hatarido) < new Date() ? 'text-danger fw-bold' : ''}">${formatDatum(szamla.fizetesi_hatarido)}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-calculator me-2"></i>Pénzügyi adatok</h6>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>Nettó összeg:</strong></td>
+                                <td>${formatPenz(Math.round(szamla.vegosszeg / (1 + szamla.afa_merteke / 100)))} Ft</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ÁFA (${szamla.afa_merteke}%):</strong></td>
+                                <td>${formatPenz(szamla.vegosszeg - Math.round(szamla.vegosszeg / (1 + szamla.afa_merteke / 100)))} Ft</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td><strong>Végösszeg:</strong></td>
+                                <td><strong>${formatPenz(szamla.vegosszeg)} Ft</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-building me-2"></i>Kiállító adatok</h6>
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title">${szamla.kiallito_nev}</h6>
+                                <p class="card-text">
+                                    <small class="text-muted">Cím:</small> ${szamla.kiallito_cim}<br>
+                                    <small class="text-muted">Adószám:</small> ${szamla.kiallito_adoszam}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-user me-2"></i>Vevő adatok</h6>
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title">${szamla.vevo_nev}</h6>
+                                <p class="card-text">
+                                    <small class="text-muted">Cím:</small> ${szamla.vevo_cim}<br>
+                                    <small class="text-muted">Adószám:</small> ${szamla.vevo_adoszam}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Modal megnyitása a tartalom betöltése után
+            const modal = new bootstrap.Modal(document.getElementById('szamlaReszletekModal'));
+            modal.show();
+        } else {
+            alert('Hiba: ' + szamla.error);
+        }
+    } catch (error) {
+        console.error('Hiba a számla részletek betöltésekor:', error);
+        alert('Hiba történt a számla részletek betöltésekor!');
     }
 }
 

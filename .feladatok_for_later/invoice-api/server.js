@@ -77,6 +77,43 @@ app.post('/api/szamlak', (req, res) => {
         });
 });
 
+// Egy számla lekérdezése ID alapján
+app.get('/api/szamlak/:id', (req, res) => {
+    const { id } = req.params;
+    const query = `
+        SELECT 
+            s.id,
+            s.szamla_szama,
+            s.szamla_kelte,
+            s.teljesites_datuma,
+            s.fizetesi_hatarido,
+            s.vegosszeg,
+            s.afa_merteke,
+            k.nev as kiallito_nev,
+            k.cim as kiallito_cim,
+            k.adoszam as kiallito_adoszam,
+            v.nev as vevo_nev,
+            v.cim as vevo_cim,
+            v.adoszam as vevo_adoszam
+        FROM szamlak s
+        JOIN kiallit_ok k ON s.kiallito_id = k.id
+        JOIN vevok v ON s.vevo_id = v.id
+        WHERE s.id = ?
+    `;
+    
+    db.get(query, [id], (err, row) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        if (!row) {
+            res.status(404).json({ error: 'Számla nem található!' });
+            return;
+        }
+        res.json(row);
+    });
+});
+
 // Számla törlése
 app.delete('/api/szamlak/:id', (req, res) => {
     const { id } = req.params;
