@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Naon vici</title>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div>
+      <h1>Vicc API</h1>
+      <nav>
+        <button id="random-joke">Random Vicc</button>
+        <button id="ten-jokes">Tíz Vicc</button>
+        <input type="number" id="joke-id" placeholder="Viccek ID" />
+        <button id="get-joke-id">Viccek ID alapján</button>
+        <select id="joke-type">
+          <option value="programming">Programozás</option>
+          <option value="general">Általános</option>
+          <option value="knock-knock">Kopogós</option>
+        </select>
+        <button id="get-joke-type">Viccek típusa alapján</button>
+        <button id="clear-button">Törlés</button>
+      </nav>
+      <div id="joke-display" style="margin-top: 20px; font-size: 1.2em"></div>
+    </div>
+  </body>
+</html>
