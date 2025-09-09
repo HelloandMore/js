@@ -22,7 +22,9 @@ if %selection%==1 (
 :commitpush
 set /p commit="Commit message: "
 git commit -m "%date% - %commit%"
+:push
 git push
+if %errorlevel%==128 (goto :push)
 
 :end
 net helpmsg %errorlevel%
