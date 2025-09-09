@@ -5,24 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Naon vici</title>
     <script src="script.js" defer></script>
+    <style>
+      /* Created by AI */
+      :root{
+        --bg: #0f1724;
+        --muted: #9aa4b2;
+        --accent: #7dd3fc;
+        --accent-2: #60a5fa;
+        --danger: #fb7185;
+        --glass: rgba(255,255,255,0.03);
+        --radius: 12px;
+        --gap: 12px;
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      }
+
+      *{box-sizing: border-box}
+      html,body{height:100%}
+      body{
+        margin:0;
+        background: linear-gradient(180deg,var(--bg) 0%, #071022 100%);
+        color: #e6eef6;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:24px;
+      }
+
+      .wrap{
+        width:100%;
+        max-width:980px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+        border-radius: var(--radius);
+        padding:20px;
+        box-shadow: 0 6px 30px rgba(2,6,23,0.65), inset 0 1px 0 rgba(255,255,255,0.02);
+        backdrop-filter: blur(6px);
+      }
+
+      header{
+        display:flex;
+        gap:16px;
+        align-items:center;
+        justify-content:space-between;
+      }
+
+      h1{margin:0; font-size:1.35rem;}
+      .subtitle{color:var(--muted); font-size:0.9rem}
+      .meta{color:var(--muted); font-size:0.9rem}
+
+      /* Controls grid */
+      nav.controls{
+        margin-top:18px;
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: var(--gap);
+        align-items:center;
+        /* allow dropdowns to overflow beyond the grid box */
+        overflow: visible;
+      }
+
+      .group{display:flex; gap:8px; align-items:center; position:relative}
+
+      /* utility helpers */
+      .utility{justify-self:end}
+
+      input[type="number"], select{
+        appearance:none; -webkit-appearance:none;
+        padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
+        background:var(--glass); color:inherit; font-size:0.95rem; outline:none; min-width:0;
+      }
+
+      /* ensure native select's dropdown isn't clipped and is clearly visible */
+      select{position:relative; z-index:60}
+      nav.controls{position:relative}
+
+      button{
+        cursor:pointer; border:0; padding:10px 12px; border-radius:10px; font-weight:600; font-size:0.95rem;
+        transition:transform .08s ease, box-shadow .08s ease, opacity .08s ease;
+        background: linear-gradient(180deg,var(--accent) 0%, var(--accent-2) 100%);
+        color: #012135; box-shadow: 0 6px 18px rgba(38,99,145,0.15);
+      }
+
+      button.secondary{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--accent)}
+      button.danger{background: linear-gradient(180deg,#ff6b7a,#fb7185); color:white}
+
+      button:active{transform:translateY(1px) scale(.999)}
+      button:focus{outline:3px solid rgba(125,211,252,0.18); outline-offset:2px}
+
+      /* make delete button compact so it doesn't cover nearby controls */
+      #clear-button{padding:10px 16px; min-width:120px}
+
+      /* ensure inputs don't flex-grow too large on narrow columns */
+      .group > *{flex: 0 1 auto}
+      .group .full{flex:1 1 auto}
+
+      #joke-display{margin-top:20px; min-height:72px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); border-radius:10px; padding:16px; font-size:1.05rem; line-height:1.45; color:#dff3ff}
+
+      @media (max-width:520px){
+        header{flex-direction:column; align-items:flex-start; gap:8px}
+        nav.controls{grid-template-columns:1fr}
+        .group{width:100%}
+        .group > *{flex:1}
+        .utility{justify-self:stretch}
+      }
+
+      .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+      /* End of AI content */
+    </style>
   </head>
   <body>
-    <div>
-      <h1>Vicc API</h1>
-      <nav>
-        <button id="random-joke">Random Vicc</button>
-        <button id="ten-jokes">Tíz Vicc</button>
-        <input type="number" id="joke-id" placeholder="Viccek ID" />
-        <button id="get-joke-id">Viccek ID alapján</button>
-        <select id="joke-type">
-          <option value="programming">Programozás</option>
-          <option value="general">Általános</option>
-          <option value="knock-knock">Kopogós</option>
-        </select>
-        <button id="get-joke-type">Viccek típusa alapján</button>
-        <button id="clear-button">Törlés</button>
+    <div class="wrap" role="application">
+      <header>
+        <div>
+          <h1>Vicc API</h1>
+          <div class="subtitle">Kérj vicceket az API-ból — gyors és egyszerű</div>
+        </div>
+        <div class="meta">Támogatott típusok: Programozás · Általános · Kopogós</div>
+      </header>
+
+      <nav class="controls" aria-label="Vicc vezérlők">
+        <div class="group"><button id="random-joke" class="full">Random vicc</button></div>
+        <div class="group"><button id="ten-jokes" class="full">Tíz vicc</button></div>
+
+        <div class="group">
+          <label for="joke-type" class="sr-only">Vicc típusa</label>
+          <select id="joke-type" aria-label="Vicc típusa" class="full">
+            <option value="programming">Programozás</option>
+            <option value="general">Általános</option>
+            <option value="knock-knock">Kopogós</option>
+          </select>
+          <button id="get-joke-type">Típus alapján</button>
+        </div>
+
+        <div class="group">
+          <label for="joke-id" class="sr-only">Viccek ID</label>
+          <input type="number" id="joke-id" placeholder="Viccek ID" min="0" aria-label="Viccek ID" />
+          <button id="get-joke-id" class="secondary">ID alapján</button>
+        </div>
+
+        <div class="group utility">
+          <button id="clear-button" class="danger">Törlés</button>
+        </div>
       </nav>
-      <div id="joke-display" style="margin-top: 20px; font-size: 1.2em"></div>
+
+      <div id="joke-display" role="status" aria-live="polite">
+        <div class="notice">Itt jelenik meg a vicc.</div>
+      </div>
     </div>
   </body>
 </html>

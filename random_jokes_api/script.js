@@ -1,82 +1,117 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const jokeContainer = document.getElementById("joke-display");
-  const fetchButton = document.getElementById("get-joke-type");
-  const jokeTypeSelect = document.getElementById("joke-type");
-  const jokeIdInput = document.getElementById("joke-id");
-  const clearButton = document.getElementById("clear-button");
+const buttonIds = [
+  "random-joke",
+  "ten-jokes",
+  "get-joke-type",
+  "get-joke-id",
+  "clear-button",
+];
 
-  const fetchRandomJoke = () => {
-    fetch("https://official-joke-api.appspot.com/jokes/random")
-      .then((response) => response.json())
-      .then((data) => displayJoke(data))
-      .catch((error) => console.error("Error fetching random joke:", error));
-  };
+function setButtonsDisabled(disabled, ids = buttonIds) {
+  ids.forEach((id) => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    btn.disabled = disabled;
+    btn.setAttribute("aria-disabled", String(disabled));
+    btn.classList.toggle("is-disabled", disabled);
+  });
+}
 
-  const fetchTenJokes = () => {
-    fetch("https://official-joke-api.appspot.com/jokes/ten")
-      .then((response) => response.json())
-      .then((data) => {
-        jokeContainer.innerHTML = "";
-        data.forEach((joke) => displayJoke(joke));
-      })
-      .catch((error) => console.error("Error fetching ten jokes:", error));
-  };
+const display = document.getElementById("joke-display");
+const idInput = document.getElementById("joke-id");
+const typeSelect = document.getElementById("joke-type");
 
-  const fetchJokeById = (id) => {
-    fetch(`https://official-joke-api.appspot.com/jokes/${id}`)
-      .then((response) => response.json())
-      .then((data) => displayJoke(data))
-      .catch((error) => console.error("Error fetching joke by ID:", error));
-  };
+async function fetchRandomJoke() {
+  setButtonsDisabled(true);
+  display.textContent = "Betöltés…";
+  try {
+    const res = await fetch(
+      "https://official-joke-api.appspot.com/jokes/random"
+    );
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const j = await res.json();
+    display.innerHTML = `<div class="joke"><p>${j.setup}</p><p>${j.punchline}</p></div>`;
+  } catch (e) {
+    console.error(e);
+    display.textContent = "Hiba történt.";
+  } finally {
+    setButtonsDisabled(false);
+  }
+}
 
-  const fetchJokeByType = (type) => {
-    fetch(`https://official-joke-api.appspot.com/jokes/${type}/random`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          displayJoke(data[0]); // Use the first joke in the array
-        } else {
-          console.error("No jokes found for the selected type.");
-        }
-      })
-      .catch((error) => console.error("Error fetching joke by type:", error));
-  };
+async function fetchTenJokes() {
+  setButtonsDisabled(true);
+  display.textContent = "Betöltés…";
+  try {
+    const res = await fetch("https://official-joke-api.appspot.com/jokes/ten");
+    const arr = await res.json();
+    display.innerHTML = arr
+      .map(
+        (j) => `<div class="joke"><p>${j.setup}</p><p>${j.punchline}</p></div>`
+      )
+      .join("");
+  } catch (e) {
+    console.error(e);
+    display.textContent = "Hiba történt.";
+  } finally {
+    setButtonsDisabled(false);
+  }
+}
 
-  const displayJoke = (joke) => {
-    const jokeElement = document.createElement("div");
-    jokeElement.className = "joke";
-    jokeElement.innerHTML = `<p>${joke.setup}</p><p>${joke.punchline}</p>`;
-    jokeContainer.appendChild(jokeElement);
-  };
-
-  fetchButton.addEventListener("click", () => {
-    const selectedType = jokeTypeSelect.value;
-    const jokeId = jokeIdInput.value;
-
-    if (selectedType === "random") {
-      fetchRandomJoke();
-    } else if (selectedType === "ten") {
-      fetchTenJokes();
-    } else if (selectedType === "id" && jokeId) {
-      fetchJokeById(jokeId);
-    } else if (selectedType !== "id") {
-      fetchJokeByType(selectedType);
+async function fetchJokeById(id) {
+  if (!id) {
+    display.textContent = "Adj meg egy ID-t.";
+    return;
+  }
+  setButtonsDisabled(true);
+  display.textContent = "Betöltés…";
+  try {
+    const res = await fetch(
+      `https://official-joke-api.appspot.com/jokes/${encodeURIComponent(id)}`
+    );
+    if (!res.ok) {
+      display.textContent =
+        res.status === 404 ? "Nem található." : "Hiba: " + res.status;
+      return;
     }
-  });
+    const j = await res.json();
+    display.innerHTML = `<div class="joke"><p>${j.setup}</p><p>${j.punchline}</p></div>`;
+  } catch (e) {
+    console.error(e);
+    display.textContent = "Hiba történt.";
+  } finally {
+    setButtonsDisabled(false);
+  }
+}
 
-  // Add a button to clear jokes
-  clearButton.addEventListener("click", () => {
-    jokeContainer.innerHTML = "";
-  });
-  // Add event listeners for the other buttons
-  document
-    .getElementById("random-joke")
-    .addEventListener("click", fetchRandomJoke);
-  document.getElementById("ten-jokes").addEventListener("click", fetchTenJokes);
-  document.getElementById("get-joke-id").addEventListener("click", () => {
-    const jokeId = jokeIdInput.value;
-    if (jokeId) {
-      fetchJokeById(jokeId);
-    }
-  });
+document
+  .getElementById("random-joke")
+  .addEventListener("click", fetchRandomJoke);
+document.getElementById("ten-jokes").addEventListener("click", fetchTenJokes);
+document
+  .getElementById("get-joke-id")
+  .addEventListener("click", () => fetchJokeById(idInput.value));
+document.getElementById("get-joke-type").addEventListener("click", () => {
+  const type = typeSelect.value;
+  setButtonsDisabled(true);
+  display.textContent = "Betöltés…";
+  fetch(
+    `https://official-joke-api.appspot.com/jokes/${encodeURIComponent(
+      type
+    )}/random`
+  )
+    .then((r) => r.json())
+    .then((data) => {
+      const j = Array.isArray(data) ? data[0] : data;
+      display.innerHTML = `<div class="joke"><p>${j.setup}</p><p>${j.punchline}</p></div>`;
+    })
+    .catch((err) => {
+      console.error(err);
+      display.textContent = "Hiba történt.";
+    })
+    .finally(() => setButtonsDisabled(false));
+});
+
+// Clear
+document.getElementById("clear-button").addEventListener("click", () => {
+  display.innerHTML = '<div class="notice">Nincs vicc. Kérj egyet!</div>';
 });
