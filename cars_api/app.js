@@ -12,7 +12,7 @@ let cars = [
     { id: 3, brand: 'Ford', model: 'Focus' }
 ];
 
-let nextId = 4;
+let nextId = cars.length + 1;
 
 app.get('/cars', (req, res) => {
     res.json(cars);
