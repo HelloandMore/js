@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Localstorage cuccos</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div>
+      <h1>Adatok bekérése</h1>  
+      <form id="dataForm">
+        <label for="name">Név:</label>
+        <input type="text" id="name" required />
+        <label for="city">Település:</label>
+        <input type="text" id="city" required />
+        <label for="postalCode">Irányítószám:</label>
+        <input type="text" id="postalCode" required />
+        <label for="street">Közterület:</label>
+        <input type="text" id="street" required />
+        <label for="houseNumber">Házszám:</label>
+        <input type="text" id="houseNumber" required />
+        <button type="submit">Mentés</button>
+      </form>
+      <div id="storedData"></div>
+    </div>
+    <button id="clearStorage">Adatok törlése</button>
+  </body>
+</html>

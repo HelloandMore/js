@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars Management</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-container { background: #f5f5f5; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .car-item { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        button { padding: 8px 12px; margin: 5px; cursor: pointer; }
+        input { padding: 8px; margin: 5px; width: 200px; }
+        .edit-btn { background: #007bff; color: white; border: none; }
+        .delete-btn { background: #dc3545; color: white; border: none; }
+        .add-btn { background: #28a745; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>Cars Management System</h1>
+    
+    <div class="form-container">
+        <h3>Add New Car</h3>
+        <form id="addCarForm">
+            <input type="text" id="brand" placeholder="Brand" required>
+            <input type="text" id="model" placeholder="Model" required>
+            <button type="submit" class="add-btn">Add Car</button>
+        </form>
+    </div>
+
+    <div class="form-container" id="editForm" style="display: none;">
+        <h3>Edit Car</h3>
+        <form id="editCarForm">
+            <input type="hidden" id="editId">
+            <input type="text" id="editBrand" placeholder="Brand" required>
+            <input type="text" id="editModel" placeholder="Model" required>
+            <button type="submit" class="edit-btn">Update Car</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+        </form>
+    </div>
+
+    <div>
+        <h3>Cars List</h3>
+        <div id="carsList"></div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
