@@ -1,0 +1,11 @@
+import Database from 'database-sqlite'
+
+const db = new Database('./data/database.sqlite');
+
+db.prepare(`CREATE TABLE IF NOT EXISTS users(id INT AUTO_INCREMENT PRIMARY KEY, firstname TEXT, lastname TEXT, email TEXT)`);
+
+export const getAllUsers = () => db.prepare(`SELECT * FROM users`);
+export const getById = () => db.prepare(`SELECT * FROM users WHERE id = ?`).get(id);
+export const createUser = () => db.prepare(`INSERT INTO users (firstname, lastname, email) VALUES (?, ?, ?)`).run(firstname, lastname, email);
+export const updateUser = () => db.prepare(`UPDATE users SET firstname = ?, lastname = ?, email = ? WHERE id = ?`).run(firstname, lastname, email, id);
+export const deleteUser = () => db.prepare(`DELETE FROM users WHERE id = ?`).get(id);
