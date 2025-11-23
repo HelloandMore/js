@@ -1,0 +1,11 @@
+import express from "express";
+import * as workoutController from "../controllers/workoutController.js";
+import authMiddleware from "../middleware/authMiddleware.js";
+const router = express.Router();
+router.get("/statistics", authMiddleware, workoutController.getStatistics);
+router.post("/", authMiddleware, workoutController.createWorkout);
+router.get("/", authMiddleware, workoutController.getWorkouts);
+router.get("/:id", authMiddleware, workoutController.getWorkoutById);
+router.put("/:id", authMiddleware, workoutController.updateWorkout);
+router.delete("/:id", authMiddleware, workoutController.deleteWorkout);
+export default router;
