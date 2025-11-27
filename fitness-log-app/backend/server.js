@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 const JWT_SECRET =
   process.env.JWT_SECRET || "your-secret-key-change-in-production";
 
-// Initialize database
+
 const db = new Database(path.join(__dirname, "fitness.db"));
 
 db.exec(`
@@ -45,12 +45,12 @@ db.exec(`
 
 console.log("Database initialized");
 
-// Middleware
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../frontend")));
 
-// Auth middleware
+
 const authMiddleware = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
@@ -65,7 +65,7 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-// AUTH ROUTES
+
 app.post("/api/auth/register", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -114,7 +114,7 @@ app.post("/api/auth/login", async (req, res) => {
   }
 });
 
-// WORKOUT ROUTES
+
 app.post("/api/workouts", authMiddleware, (req, res) => {
   try {
     const { date, duration, notes, exercises } = req.body;
@@ -247,7 +247,7 @@ app.delete("/api/workouts/:id", authMiddleware, (req, res) => {
   }
 });
 
-// STATISTICS ROUTE
+
 app.get("/api/statistics", authMiddleware, (req, res) => {
   try {
     const totalWorkouts = db

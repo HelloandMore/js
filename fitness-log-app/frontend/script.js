@@ -3,7 +3,6 @@ let token = localStorage.getItem("token");
 let currentWorkoutId = null;
 let exerciseCounter = 0;
 
-// Initialize app
 if (token) {
   showMainApp();
   loadWorkouts();
@@ -11,7 +10,6 @@ if (token) {
   document.getElementById("loginPage").classList.remove("hidden");
 }
 
-// Auth functions
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = document.getElementById("loginEmail").value;
@@ -98,7 +96,6 @@ function showError(elementId, message) {
   setTimeout(() => errorEl.classList.add("hidden"), 5000);
 }
 
-// Navigation
 function showWorkouts() {
   document.getElementById("workoutsPage").classList.remove("hidden");
   document.getElementById("statisticsPage").classList.add("hidden");
@@ -115,7 +112,6 @@ function showStatistics() {
   loadStatistics();
 }
 
-// Workouts
 async function loadWorkouts() {
   try {
     const response = await fetch(`${API_URL}/workouts`, {
@@ -186,7 +182,6 @@ function displayWorkouts(workouts) {
     .join("");
 }
 
-// Modal functions
 function openAddWorkoutModal() {
   currentWorkoutId = null;
   document.getElementById("modalTitle").textContent = "Add Workout";
@@ -308,7 +303,6 @@ document.getElementById("workoutForm").addEventListener("submit", async (e) => {
   }
 });
 
-// Statistics
 async function loadStatistics() {
   try {
     const response = await fetch(`${API_URL}/statistics`, {
