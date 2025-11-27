@@ -4,10 +4,9 @@
   "description": "Fitness Log Application",
   "type": "module",
   "scripts": {
-    "remove-comments": "node remove-comments.js",
-    "install-all": "cd backend && npm install && cd ../frontend && npm install",
-    "start-backend": "cd backend && npm start",
-    "start-frontend": "cd frontend && npm start"
+    "install": "cd backend && npm install",
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev"
   },
   "keywords": [
     "fitness",

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitness Log App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Auth Pages -->
+      <div id="loginPage" class="auth-page">
+        <h2>Login to Fitness Log</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" required />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" required />
+          </div>
+          <button type="submit" class="btn">Login</button>
+          <div id="loginError" class="error hidden"></div>
+        </form>
+        <button class="link-button" onclick="switchToRegister()">
+          Don't have an account? Register
+        </button>
+      </div>
+
+      <div id="registerPage" class="auth-page hidden">
+        <h2>Create Account</h2>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="registerEmail">Email</label>
+            <input type="email" id="registerEmail" required />
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">Password</label>
+            <input type="password" id="registerPassword" required />
+          </div>
+          <button type="submit" class="btn">Register</button>
+          <div id="registerError" class="error hidden"></div>
+        </form>
+        <button class="link-button" onclick="switchToLogin()">
+          Already have an account? Login
+        </button>
+      </div>
+
+      <!-- Main App -->
+      <div id="mainApp" class="hidden">
+        <header>
+          <h1>💪 Fitness Log</h1>
+          <nav>
+            <button id="workoutsTab" class="active" onclick="showWorkouts()">
+              Workouts
+            </button>
+            <button id="statsTab" onclick="showStatistics()">Statistics</button>
+            <button onclick="logout()">Logout</button>
+          </nav>
+        </header>
+
+        <div class="content">
+          <!-- Workouts Page -->
+          <div id="workoutsPage">
+            <button class="btn btn-small" onclick="openAddWorkoutModal()">
+              + Add Workout
+            </button>
+            <div id="workoutsList"></div>
+          </div>
+
+          <!-- Statistics Page -->
+          <div id="statisticsPage" class="hidden">
+            <h2 style="margin-bottom: 20px; color: #333">Your Statistics</h2>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <h3 id="totalWorkouts">0</h3>
+                <p>Total Workouts</p>
+              </div>
+              <div class="stat-card">
+                <h3 id="totalDuration">0</h3>
+                <p>Total Minutes</p>
+              </div>
+            </div>
+            <div class="weekly-chart">
+              <h3>Last 7 Days</h3>
+              <div id="weeklyChart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add/Edit Workout Modal -->
+    <div id="workoutModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add Workout</h2>
+          <button class="close-btn" onclick="closeWorkoutModal()">
+            &times;
+          </button>
+        </div>
+        <form id="workoutForm">
+          <div class="form-group">
+            <label for="workoutDate">Date</label>
+            <input type="date" id="workoutDate" required />
+          </div>
+          <div class="form-group">
+            <label for="workoutDuration">Duration (minutes)</label>
+            <input type="number" id="workoutDuration" required min="1" />
+          </div>
+          <div class="form-group">
+            <label for="workoutNotes">Notes</label>
+            <textarea id="workoutNotes" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Exercises</label>
+            <div id="exercisesContainer"></div>
+            <button
+              type="button"
+              class="btn btn-secondary btn-small"
+              onclick="addExerciseInput()"
+            >
+              + Add Exercise
+            </button>
+          </div>
+          <button type="submit" class="btn">Save Workout</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
