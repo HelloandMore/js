@@ -1,0 +1,4 @@
+Welcome to test.txt file.
+This is a test file.
+3. row
+Don't forget to trim() the content lines.
