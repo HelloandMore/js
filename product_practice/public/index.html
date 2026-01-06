@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Termékkezelő Rendszer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Termékkezelő Rendszer</h1>
+
+      <!-- Add/Edit Product Form -->
+      <div class="form-section">
+        <h2 id="form-title">Új termék hozzáadása</h2>
+        <form id="product-form">
+          <input type="hidden" id="product-id" />
+          <div class="form-group">
+            <label for="product-name">Termék neve:</label>
+            <input type="text" id="product-name" required />
+          </div>
+          <div class="form-group">
+            <label for="product-price">Ár:</label>
+            <input type="number" id="product-price" step="0.01" required />
+          </div>
+          <div class="form-group">
+            <label for="product-amount">Mennyiség:</label>
+            <input type="number" id="product-amount" required />
+          </div>
+          <div class="form-buttons">
+            <button type="submit" class="btn btn-primary" id="submit-btn">
+              Hozzáadás
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="cancel-btn"
+              style="display: none"
+            >
+              Mégse
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Products List -->
+      <div class="products-section">
+        <h2>Termékek listája</h2>
+        <div id="products-list"></div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
