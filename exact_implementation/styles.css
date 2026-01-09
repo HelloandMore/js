@@ -29,7 +29,7 @@ h1 {
 }
 
 .infocard tt {
-    background-color: #f4f4f4;
+  background-color: #f4f4f4;
 }
 
 .infocard {
@@ -71,7 +71,7 @@ h1 {
   border-radius: 50%;
   font-size: 12px;
   font-weight: bold;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath d='m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z'/%3E%3C/svg%3E");
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 14px 14px;
@@ -89,7 +89,7 @@ h1 {
   border-radius: 50%;
   font-size: 12px;
   font-weight: bold;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEzIDE0aC0yVjloMm0wIDloLTJ2LTJoMk0xIDIxaDIyTDEyIDJ6Ii8+PC9zdmc+");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 14px 14px;
@@ -107,7 +107,6 @@ h1 {
 .warningcard ul {
   margin-left: 20px;
   padding: 0 20px 20px 20px;
-  list-style-position: outside;
 }
 
 .warningcard ul li {
