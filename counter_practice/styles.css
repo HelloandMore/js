@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+}
+
+body {
+    box-sizing: border-box;
+    background-color: #F2ECF4;
+}
+
+#counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-size: xx-large;
+    font-weight: lighter;
+}
+
+#counterLabel {
+    font-size: large;
+}
+
+h1 {
+    background-color: #D3BCFD;
+    padding: 20px;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+    border: none;
+    background-color: #EBDDFF;
+}
+
+#decrease, #increase {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
