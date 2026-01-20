@@ -1,33 +1,27 @@
 import 'dart:io';
 import 'epitmeny.dart';
 
-// Globális változók az adósávokhoz
 late int aSav;
 late int bSav;
 late int cSav;
 
 void main() {
-  // 1. Adatok beolvasása
   List<Epitmeny> epitmenyek = beolvas();
   
-  // 7. Fizetendő adó tulajdonosonként
   fizetendoAdo(epitmenyek);
 }
 
-// 1. Beolvasás függvény
 List<Epitmeny> beolvas() {
   List<Epitmeny> epitmenyek = [];
   
   try {
     List<String> sorok = File('utca.txt').readAsLinesSync();
     
-    // Első sor: adósávok
     List<String> adosavok = sorok[0].split(' ');
     aSav = int.parse(adosavok[0]);
     bSav = int.parse(adosavok[1]);
     cSav = int.parse(adosavok[2]);
     
-    // Többi sor: épitmények
     for (int i = 1; i < sorok.length; i++) {
       List<String> adatok = sorok[i].split(' ');
       
@@ -46,7 +40,6 @@ List<Epitmeny> beolvas() {
   return epitmenyek;
 }
 
-// 4. Adó kiszámítása függvény
 int ado(String adosav, int alapterulet) {
   int egysegar;
   
@@ -67,9 +60,7 @@ int ado(String adosav, int alapterulet) {
   return egysegar * alapterulet;
 }
 
-// 7. Fizetendő adó tulajdonosonként
 void fizetendoAdo(List<Epitmeny> epitmenyek) {
-  // Adószám szerint csoportosítás és összegzés
   Map<int, int> tulajdonosok = {};
   
   for (var epitmeny in epitmenyek) {
@@ -82,7 +73,6 @@ void fizetendoAdo(List<Epitmeny> epitmenyek) {
     }
   }
   
-  // Kiírás fájlba
   try {
     var fajl = File('fizetendo.txt');
     var sink = fajl.openWrite();

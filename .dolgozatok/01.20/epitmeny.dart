@@ -1,4 +1,3 @@
-// 1. Adatstruktúra az építmények tárolására
 class Epitmeny {
   int adoszam;
   String utca;
