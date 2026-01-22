@@ -1,0 +1,491 @@
+<!-- !AI generated file! -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2×2 Table Game Solver</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+
+        .game-area {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .table-section {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .table-3x3 {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            grid-template-rows: repeat(3, 80px);
+            gap: 5px;
+            position: relative;
+            margin: 0 auto;
+            width: fit-content;
+        }
+
+        .cell {
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            border-radius: 8px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .cell.highlight-a { background-color: #ffebee; border-color: #ef5350; }
+        .cell.highlight-b { background-color: #e3f2fd; border-color: #42a5f5; }
+        .cell.highlight-c { background-color: #fff3e0; border-color: #ffa726; }
+        .cell.highlight-d { background-color: #e8f5e9; border-color: #66bb6a; }
+
+        .cell input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .cell input:focus {
+            outline: none;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .table-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn-table {
+            padding: 15px;
+            border: 2px solid;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .btn-table-a {
+            border-color: #ef5350;
+            color: #ef5350;
+        }
+        .btn-table-a:hover { background: #ffebee; }
+
+        .btn-table-b {
+            border-color: #42a5f5;
+            color: #42a5f5;
+        }
+        .btn-table-b:hover { background: #e3f2fd; }
+
+        .btn-table-c {
+            border-color: #ffa726;
+            color: #ffa726;
+        }
+        .btn-table-c:hover { background: #fff3e0; }
+
+        .btn-table-d {
+            border-color: #66bb6a;
+            color: #66bb6a;
+        }
+        .btn-table-d:hover { background: #e8f5e9; }
+
+        .result {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+        }
+
+        .result.success {
+            background: #e8f5e9;
+            border-color: #66bb6a;
+        }
+
+        .result.error {
+            background: #ffebee;
+            border-color: #ef5350;
+        }
+
+        .result-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .result-values {
+            font-size: 1.5em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .legend-item {
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .examples {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .examples h3 {
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .example-btn {
+            margin: 5px;
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .example-btn:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 2×2 Table Game Solver</h1>
+        <p class="subtitle">Find how many times each 2×2 sub-table was increased</p>
+
+        <div class="game-area">
+            <div class="table-section">
+                <div class="section-title">3×3 Table</div>
+                <div class="table-3x3" id="mainTable">
+                    <div class="cell" data-pos="0,0"><input type="number" value="0" min="0"></div>
+                    <div class="cell" data-pos="0,1"><input type="number" value="0" min="0"></div>
+                    <div class="cell" data-pos="0,2"><input type="number" value="0" min="0"></div>
+                    <div class="cell" data-pos="1,0"><input type="number" value="0" min="0"></div>
+                    <div class="cell" data-pos="1,1"><input type="number" value="0" min="0"></div>
+                    <div class="cell" data-pos="1,2"><input type="number" value="0" min="0"></div>
+                    <div class="cell" data-pos="2,0"><input type="number" value="0" min="0"></div>
+                    <div class="cell" data-pos="2,1"><input type="number" value="0" min="0"></div>
+                    <div class="cell" data-pos="2,2"><input type="number" value="0" min="0"></div>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <div class="section-title">Increase Sub-tables</div>
+                <div class="table-buttons">
+                    <button class="btn-table btn-table-a" onclick="increaseTable('A')">
+                        Table A<br>(Top-Left)
+                    </button>
+                    <button class="btn-table btn-table-b" onclick="increaseTable('B')">
+                        Table B<br>(Top-Right)
+                    </button>
+                    <button class="btn-table btn-table-c" onclick="increaseTable('C')">
+                        Table C<br>(Bottom-Left)
+                    </button>
+                    <button class="btn-table btn-table-d" onclick="increaseTable('D')">
+                        Table D<br>(Bottom-Right)
+                    </button>
+                </div>
+
+                <div class="legend">
+                    <div class="legend-item" style="border-color: #ef5350; color: #ef5350;">
+                        A: [0,0→1,1]
+                    </div>
+                    <div class="legend-item" style="border-color: #42a5f5; color: #42a5f5;">
+                        B: [0,1→1,2]
+                    </div>
+                    <div class="legend-item" style="border-color: #ffa726; color: #ffa726;">
+                        C: [1,0→2,1]
+                    </div>
+                    <div class="legend-item" style="border-color: #66bb6a; color: #66bb6a;">
+                        D: [1,1→2,2]
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="solve()">🔍 Solve</button>
+            <button class="btn btn-secondary" onclick="reset()">🔄 Reset</button>
+            <button class="btn btn-secondary" onclick="highlightTables()">👁️ Show Sub-tables</button>
+        </div>
+
+        <div class="result" id="result">
+            <div class="result-title">Result will appear here</div>
+            <div class="result-values" id="resultValues">Click "Solve" to find the answer</div>
+        </div>
+
+        <div class="examples">
+            <h3>📝 Load Examples:</h3>
+            <button class="example-btn" onclick="loadExample(1)">Example 1: [1,1,1,1]</button>
+            <button class="example-btn" onclick="loadExample(2)">Example 2: [3,4,2,7]</button>
+            <button class="example-btn" onclick="loadExample(3)">Random Example</button>
+        </div>
+    </div>
+
+    <script>
+        function getTableValues() {
+            const table = [];
+            const inputs = document.querySelectorAll('.cell input');
+            for (let i = 0; i < 3; i++) {
+                table[i] = [];
+                for (let j = 0; j < 3; j++) {
+                    const value = parseInt(inputs[i * 3 + j].value) || 0;
+                    table[i][j] = value;
+                }
+            }
+            return table;
+        }
+
+        function setTableValues(table) {
+            const inputs = document.querySelectorAll('.cell input');
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    inputs[i * 3 + j].value = table[i][j];
+                }
+            }
+        }
+
+        function solveTable(table) {
+            const A = table[0][0];
+            const B = table[0][2];
+            const C = table[2][0];
+            const D = table[2][2];
+
+            if (table[0][1] !== A + B) return [-1];
+            if (table[1][0] !== A + C) return [-1];
+            if (table[1][2] !== B + D) return [-1];
+            if (table[2][1] !== C + D) return [-1];
+            if (table[1][1] !== A + B + C + D) return [-1];
+
+            return [A, B, C, D];
+        }
+
+        function solve() {
+            const table = getTableValues();
+            const result = solveTable(table);
+            const resultDiv = document.getElementById('result');
+            const resultValues = document.getElementById('resultValues');
+
+            if (result[0] === -1) {
+                resultDiv.className = 'result error';
+                resultDiv.querySelector('.result-title').textContent = '❌ Invalid Table (Cheating Detected)';
+                resultValues.textContent = 'This configuration is impossible!';
+            } else {
+                resultDiv.className = 'result success';
+                resultDiv.querySelector('.result-title').textContent = '✅ Solution Found!';
+                resultValues.innerHTML = `
+                    <div>A = ${result[0]}, B = ${result[1]}, C = ${result[2]}, D = ${result[3]}</div>
+                    <div style="font-size: 0.8em; margin-top: 10px; color: #666;">
+                        [${result.join(', ')}]
+                    </div>
+                `;
+            }
+        }
+
+        function increaseTable(table) {
+            const positions = {
+                'A': [[0,0], [0,1], [1,0], [1,1]],
+                'B': [[0,1], [0,2], [1,1], [1,2]],
+                'C': [[1,0], [1,1], [2,0], [2,1]],
+                'D': [[1,1], [1,2], [2,1], [2,2]]
+            };
+
+            const inputs = document.querySelectorAll('.cell input');
+            positions[table].forEach(([i, j]) => {
+                const input = inputs[i * 3 + j];
+                input.value = parseInt(input.value) + 1;
+            });
+
+            // Visual feedback
+            const cells = document.querySelectorAll('.cell');
+            positions[table].forEach(([i, j]) => {
+                const cell = cells[i * 3 + j];
+                cell.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    cell.style.transform = 'scale(1)';
+                }, 200);
+            });
+        }
+
+        function reset() {
+            const inputs = document.querySelectorAll('.cell input');
+            inputs.forEach(input => input.value = 0);
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result';
+            resultDiv.querySelector('.result-title').textContent = 'Result will appear here';
+            document.getElementById('resultValues').textContent = 'Click "Solve" to find the answer';
+            
+            // Remove highlights
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.className = 'cell';
+            });
+        }
+
+        function highlightTables() {
+            const cells = document.querySelectorAll('.cell');
+            const highlights = {
+                'A': [[0,0], [0,1], [1,0], [1,1]],
+                'B': [[0,1], [0,2], [1,1], [1,2]],
+                'C': [[1,0], [1,1], [2,0], [2,1]],
+                'D': [[1,1], [1,2], [2,1], [2,2]]
+            };
+
+            // Toggle highlight
+            const hasHighlight = cells[0].className.includes('highlight');
+            
+            if (hasHighlight) {
+                cells.forEach(cell => cell.className = 'cell');
+            } else {
+                Object.keys(highlights).forEach(table => {
+                    highlights[table].forEach(([i, j]) => {
+                        const cell = cells[i * 3 + j];
+                        cell.classList.add(`highlight-${table.toLowerCase()}`);
+                    });
+                });
+            }
+        }
+
+        function loadExample(num) {
+            let table;
+            switch(num) {
+                case 1:
+                    table = [[1,2,1], [2,4,2], [1,2,1]];
+                    break;
+                case 2:
+                    table = [[3,7,4], [5,16,11], [2,9,7]];
+                    break;
+                case 3:
+                    // Generate random valid table
+                    const a = Math.floor(Math.random() * 5);
+                    const b = Math.floor(Math.random() * 5);
+                    const c = Math.floor(Math.random() * 5);
+                    const d = Math.floor(Math.random() * 5);
+                    table = [
+                        [a, a+b, b],
+                        [a+c, a+b+c+d, b+d],
+                        [c, c+d, d]
+                    ];
+                    break;
+            }
+            setTableValues(table);
+            
+            // Auto-solve after loading
+            setTimeout(() => solve(), 300);
+        }
+    </script>
+</body>
+</html>
