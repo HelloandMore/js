@@ -169,7 +169,7 @@ app.get(`${BASE_URI}/szabad`, (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   console.log(`Base URI: ${BASE_URI}`);
-  console.log("\nAvailable endpoints:");
+  console.log("\nEndpoints:");
   console.log(`  GET ${BASE_URI}/telepules?nev=<telepulesnev>`);
   console.log(`  GET ${BASE_URI}/tanora`);
   console.log(`  GET ${BASE_URI}/9-matematika-fizika`);
