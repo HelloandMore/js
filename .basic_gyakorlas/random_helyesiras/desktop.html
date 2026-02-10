@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Szógyakoriság - Asztali Alkalmazás</title>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <style>
+      body {
+        padding: 20px;
+      }
+      .controls {
+        margin-bottom: 20px;
+      }
+      table {
+        margin-top: 20px;
+      }
+      .editable {
+        cursor: pointer;
+        background-color: #ffffcc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1>Szógyakoriság vizsgálat</h1>
+
+      <div class="controls">
+        <div class="row">
+          <div class="col-md-3">
+            <label for="szofajValaszto" class="form-label"
+              >Szófaj kiválasztása:</label
+            >
+            <select id="szofajValaszto" class="form-select">
+              <option value="">Mind</option>
+              <option value="fn">Főnév (fn)</option>
+              <option value="mn">Melléknév (mn)</option>
+              <option value="ige">Ige (ige)</option>
+              <option value="hsz">Határozószó (hsz)</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">&nbsp;</label>
+            <button id="szuresGomb" class="btn btn-primary d-block">
+              Szűrés
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table id="szavakTabla" class="table table-striped table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>Azonosító</th>
+              <th>Szótő</th>
+              <th>Szófaj</th>
+              <th>Gyakoriság</th>
+            </tr>
+          </thead>
+          <tbody id="tablaTorzs"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      let osszesAdat = [];
+      let eredetiGyakorisag = {};
+
+      // Adatok betöltése
+      async function betoltAdatok() {
+        try {
+          const response = await fetch("szo10000.txt");
+          const text = await response.text();
+          const sorok = text.split("\n");
+
+          osszesAdat = [];
+          for (let i = 1; i < sorok.length; i++) {
+            const sor = sorok[i].trim();
+            if (sor) {
+              const mezok = sor.split("\t");
+              if (mezok.length === 4) {
+                const adat = {
+                  azon: parseInt(mezok[0]),
+                  szoto: mezok[1],
+                  szofaj: mezok[2],
+                  gyakori: parseInt(mezok[3]),
+                };
+                osszesAdat.push(adat);
+                eredetiGyakorisag[adat.azon] = adat.gyakori;
+              }
+            }
+          }
+
+          megjelenites(osszesAdat);
+        } catch (error) {
+          console.error("Hiba az adatok betöltésekor:", error);
+          alert("Nem sikerült betölteni az adatokat!");
+        }
+      }
+
+      // Táblázat megjelenítése
+      function megjelenites(adatok) {
+        const tbody = document.getElementById("tablaTorzs");
+        tbody.innerHTML = "";
+
+        adatok.forEach((szo) => {
+          const sor = document.createElement("tr");
+          sor.innerHTML = `
+                    <td>${szo.azon}</td>
+                    <td>${szo.szoto}</td>
+                    <td>${szo.szofaj}</td>
+                    <td class="editable" data-azon="${szo.azon}" contenteditable="true">${szo.gyakori}</td>
+                `;
+          tbody.appendChild(sor);
+        });
+
+        // Gyakoriság szerkesztés kezelése
+        document.querySelectorAll(".editable").forEach((elem) => {
+          elem.addEventListener("blur", function () {
+            const azon = parseInt(this.dataset.azon);
+            const ujErtek = parseInt(this.textContent);
+            const eredetiErtek = eredetiGyakorisag[azon];
+
+            if (isNaN(ujErtek) || ujErtek < eredetiErtek) {
+              alert(
+                "A gyakoriság nem lehet kisebb, mint a rögzített adat (" +
+                  eredetiErtek +
+                  ")!",
+              );
+              this.textContent = osszesAdat.find(
+                (s) => s.azon === azon,
+              ).gyakori;
+            } else {
+              // Frissítés az adatban
+              const szo = osszesAdat.find((s) => s.azon === azon);
+              if (szo) {
+                szo.gyakori = ujErtek;
+              }
+            }
+          });
+        });
+      }
+
+      // Szűrés gomb eseménykezelő
+      document
+        .getElementById("szuresGomb")
+        .addEventListener("click", function () {
+          const valasztottSzofaj =
+            document.getElementById("szofajValaszto").value;
+
+          if (valasztottSzofaj === "") {
+            megjelenites(osszesAdat);
+          } else {
+            const szurt = osszesAdat.filter(
+              (s) => s.szofaj === valasztottSzofaj,
+            );
+            // Első 10 elem
+            const top10 = szurt.slice(0, 10);
+            megjelenites(top10);
+          }
+        });
+
+      // Oldal betöltésekor
+      window.addEventListener("load", betoltAdatok);
+    </script>
+  </body>
+</html>
