@@ -1,0 +1,242 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #4a90e2;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* Navbar Styles */
+.navbar-custom {
+  background-color: #dc3545;
+  /* padding: 10px 20px; */
+  margin-bottom: 20px;
+  /* border-radius: 0; */
+}
+
+.navbar-custom .navbar-nav {
+  gap: 30px;
+}
+
+.navbar-custom .nav-link {
+  color: white !important;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px 0;
+  transition: opacity 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover {
+  opacity: 0.8;
+}
+
+.navbar-toggler {
+  background-color: white;
+}
+
+/* Main Content */
+.main-content {
+  padding: 40px 20px;
+}
+
+.content-wrapper {
+  background-color: #e8e8e8;
+  padding: 20px;
+  /* border-radius: 8px; */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Title */
+h1 {
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Introduction Section */
+.intro-section {
+  margin-bottom: 40px;
+}
+
+.intro-section p {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.intro-section ol {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-left: 20px;
+}
+
+.intro-section ol li {
+  margin-bottom: 8px;
+}
+
+/* Castle Cards */
+.castle-card {
+  background-color: white;
+  border: none;
+  /* border-radius: 8px; */
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.castle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.castle-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.castle-card .card-body {
+  padding: 20px;
+}
+
+.castle-card .card-title {
+  color: #333;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.castle-card .card-text {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  /* text-align: justify; */
+}
+
+/* Buttons */
+.btn-custom {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  /* border-radius: 4px; */
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-self: flex-start;
+}
+
+.btn-custom:hover {
+  background-color: #c82333;
+  color: white;
+}
+
+/* Responsive Design */
+
+/* Mobile devices (up to 576px) */
+@media (max-width: 575px) {
+  .content-wrapper {
+    padding: 15px;
+  }
+
+  .navbar-custom {
+    padding: 10px 15px;
+    margin-bottom: 15px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .castle-card img {
+    height: 200px;
+  }
+
+  .castle-card .card-text {
+    font-size: 13px;
+  }
+
+  .navbar-custom .navbar-nav {
+    gap: 10px;
+  }
+}
+
+/* Small tablets (576px to 768px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .content-wrapper {
+    padding: 18px;
+  }
+
+  .navbar-custom {
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .castle-card img {
+    height: 220px;
+  }
+}
+
+/* Tablets (768px to 992px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .content-wrapper {
+    padding: 20px;
+  }
+
+  .navbar-custom {
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .castle-card img {
+    height: 230px;
+  }
+}
+
+/* Desktop (992px and above) */
+@media (min-width: 992px) {
+  .content-wrapper {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  .castle-card img {
+    height: 250px;
+  }
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 991px) {
+  .main-content {
+    padding: 20px 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .intro-section {
+    margin-bottom: 30px;
+  }
+
+  .row.g-4 {
+    gap: 20px !important;
+  }
+}
