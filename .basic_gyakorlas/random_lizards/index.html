@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reptiles</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .navbar {
+        background-color: #2d6a4f;
+      }
+
+      .navbar-brand,
+      .nav-link {
+        color: #ffffff !important;
+      }
+
+      .nav-link:hover {
+        color: #b7e4c7 !important;
+      }
+
+      .hero {
+        background-color: #1b4332;
+        color: #ffffff;
+        padding: 60px 0;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+
+      .hero ul {
+        font-size: 1.1rem;
+        line-height: 2;
+        padding-left: 1.2rem;
+      }
+
+      .cards-section {
+        padding: 60px 0;
+      }
+
+      .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        height: 100%;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16);
+      }
+
+      .card-img-top {
+        border-radius: 12px 12px 0 0;
+        height: 240px;
+        object-fit: cover;
+      }
+
+      .card-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #1b4332;
+      }
+
+      .card-text {
+        font-size: 0.97rem;
+        color: #444;
+      }
+
+      .card-link {
+        color: #2d6a4f;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .card-link:hover {
+        color: #1b4332;
+        text-decoration: underline;
+      }
+
+      footer {
+        background-color: #1b4332;
+        color: #b7e4c7;
+        padding: 24px 0;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Reptiles</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          style="border-color: #b7e4c7"
+        >
+          <span style="color: #b7e4c7">&#9776;</span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://hu.wikipedia.org/wiki/H%C3%BCll%C5%91k"
+                target="_blank"
+                >Reptiles</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://hu.wikipedia.org/wiki/Tekn%C5%91s%C3%B6k"
+                target="_blank"
+                >Turtles</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://hu.wikipedia.org/wiki/Felem%C3%A1sgy%C3%ADkok"
+                target="_blank"
+                >Helamásíkok</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://hu.wikipedia.org/wiki/Scaly_reptiles"
+                target="_blank"
+                >Scaly reptiles</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://hu.wikipedia.org/wiki/Krokodilok"
+                target="_blank"
+                >Crocodiles</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>Reptiles</h1>
+        <p class="lead mb-4">
+          Reptilia are a paraphyletic class of tetrapods. The classical
+          classification system distinguishes four living orders:
+        </p>
+        <ul>
+          <li>
+            <strong>Turtles (Testudines)</strong> &mdash; approximately 300
+            species
+          </li>
+          <li>
+            <strong>Sphenodontia or Rhynchocephalia</strong> &mdash; tuatara: 2
+            species
+          </li>
+          <li>
+            <strong>Squamata</strong> &mdash; lizards, snakes and amphisbaenia:
+            approximately 7,600 species
+          </li>
+          <li><strong>Crocodiles (Crocodilia)</strong> &mdash; 24 species</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards-section">
+      <div class="container">
+        <div class="row g-4">
+          <!-- Turtles -->
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card">
+              <img
+                src="images/teknocok.jpg"
+                alt="Turtles"
+                class="card-img-top"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Turtles</h5>
+                <p class="card-text flex-grow-1">
+                  Turtles (Testudines or Chelonia), formerly turtles or
+                  tortoises, are a monophyletic order of the class Reptilia.
+                  They are characterized by a box-like shell made of fused bones
+                  of the thoracic and pelvic girdle, which distinguishes them
+                  from all other vertebrates.
+                </p>
+                <a
+                  href="https://hu.wikipedia.org/wiki/Tekn%C5%91s%C3%B6k"
+                  target="_blank"
+                  class="card-link mt-2"
+                  >Wikipedia &rarr;</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Helemászíkok -->
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card">
+              <img
+                src="images/felemasgyikok.jpg"
+                alt="Helemászíkok"
+                class="card-img-top"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Helemászíkok</h5>
+                <p class="card-text flex-grow-1">
+                  Helemászíkok (Rhynchocephalia or Sphenodontia) is an order
+                  belonging to the class of reptiles (Reptilia). Their exterior
+                  resembles that of lizards, but their internal structure bears
+                  the marks of various other orders and even classes. The order
+                  includes the hydras, often referred to as "living fossils".
+                </p>
+                <a
+                  href="https://hu.wikipedia.org/wiki/Felem%C3%A1szy%C3%ADkok"
+                  target="_blank"
+                  class="card-link mt-2"
+                  >Wikipedia &rarr;</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Squamous Reptiles -->
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card">
+              <img
+                src="images/pikkelyes_hullok.jpg"
+                alt="Squamous reptiles"
+                class="card-img-top"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Squamous Reptiles</h5>
+                <p class="card-text flex-grow-1">
+                  Squamous reptiles (Squamata) are an order belonging to the
+                  class of reptiles. Their common characteristic is that their
+                  bodies are covered with scales, and their heads and ventral
+                  sides are covered with shields. The upper palate is such that
+                  the nostrils open at the very beginning of the oral cavity.
+                  There are approximately 7,600 species in the order.
+                </p>
+                <a
+                  href="https://hu.wikipedia.org/wiki/Pikkeleyes_h%C3%BCll%C5%91k"
+                  target="_blank"
+                  class="card-link mt-2"
+                  >Wikipedia &rarr;</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Crocodiles -->
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card">
+              <img
+                src="images/krokodilok.jpg"
+                alt="Crocodiles"
+                class="card-img-top"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Crocodiles</h5>
+                <p class="card-text flex-grow-1">
+                  Crocodiles (Crocodylia) are an order of reptiles. Their
+                  closest living relatives are birds. Crocodiles belong to the
+                  subclass Archosauromorpha of the reptile class, and their
+                  closest relatives are the orders Aetosauria, Phytosauria, and
+                  Rauissuchia.
+                </p>
+                <a
+                  href="https://hu.wikipedia.org/wiki/Krokodilos"
+                  target="_blank"
+                  class="card-link mt-2"
+                  >Wikipedia &rarr;</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        &copy; 2026 Reptiles &mdash; Sources:
+        <a
+          href="https://hu.wikipedia.org/wiki/H%C3%BCll%C5%91k"
+          target="_blank"
+          style="color: #d8f3dc"
+          >Wikipedia</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>
