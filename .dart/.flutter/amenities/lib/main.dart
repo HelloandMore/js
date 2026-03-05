@@ -72,7 +72,7 @@ class _HotelAmenitiesFormState extends State<HotelAmenitiesForm> {
   }
 
   // ── Section 4: Included Services — SwitchListTile map (switch_example.dart)
-  Map<String, bool> _includedServices = <String, bool>{
+  final Map<String, bool> _includedServices = <String, bool>{
     'Breakfast': false,
     'Wi-Fi': true,
     'Room Service': false,
