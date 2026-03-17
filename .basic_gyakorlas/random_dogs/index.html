@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogs</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5c200;
+            padding: 15px;
+        }
+        .main-content {
+            background-color: white;
+            padding: 20px 25px;
+        }
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        @media (min-width: 480px) {
+            .nav-links {
+                flex-direction: row;
+            }
+        }
+        .nav-btn {
+            background-color: #1b6b3a;
+            color: white;
+            border: none;
+            padding: 6px 18px;
+            text-decoration: none;
+            font-size: 1rem;
+            display: inline-block;
+            width: fit-content;
+        }
+        .nav-btn:hover {
+            background-color: #155230;
+            color: white;
+        }
+        h1.page-title {
+            color: #1b6b3a;
+            text-align: center;
+            margin: 25px 0 20px;
+            font-weight: bold;
+        }
+        p {
+            text-align: justify;
+        }
+        a.text-link {
+            color: #1b6b3a;
+            text-decoration: underline;
+        }
+        a.text-link:hover {
+            color: #155230;
+        }
+        .card {
+            border: 1px solid #dee2e6;
+        }
+        .card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+        .card-body {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-heading {
+            color: #1b6b3a;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .card-text {
+            text-align: justify;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+        .tovabb-btn {
+            display: inline-block;
+            border: 1px solid #1b6b3a;
+            color: #1b6b3a;
+            padding: 4px 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            width: fit-content;
+            background-color: white;
+        }
+        .tovabb-btn:hover {
+            background-color: #f0f0f0;
+            color: #1b6b3a;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+
+        <!-- Navigation -->
+        <div class="nav-links">
+            <a href="https://hu.wikipedia.org/wiki/Kutya" class="nav-btn">Wikipedia</a>
+            <a href="https://www.google.com/search?sca_esv=7af2700d66749ff7&sxsrf=ANbL-n4nP7QeO7yUsFGi0CbtBTS8u_CqJQ:1771928211264&udm=2&fbs=ADc_l-akmJ9clyHhwEynr9YRwEo_tYQUWp-_aNxOcHgKpLE-YZ2V4cVLNMgOkgu4ROJ1y-h7AretHZR61zzPGUvgzXWtO_cDsXLDgd9Rt_-llMLXqBbjnse9afZmrFz1Jwv6X1kJF56fznCIaMXSYi0qhz1Tl0MGqp4m8ba-xWcj8nTJDISOZr8O7XuPAn6ljyVJTDaLj-bVDCzUqSTQ6qudJPzE_VbCKQ&q=kuty%C3%A1k&sa=X&ved=2ahUKEwij9eX88vGSAxXkkcMKHQKOACMQtKgLegQIFhAB&biw=1920&bih=919" class="nav-btn">Pictures</a>
+            <a href="https://www.google.com/search?sa=X&sca_esv=7af2700d66749ff7&sxsrf=ANbL-n7RGVPXzN1EAUfCDjuBeCayDugb7g:1771928381628&udm=7&fbs=ADc_l-akmJ9clyHhwEynr9YRwEo_tYQUWp-_aNxOcHgKpLE-YZ2V4cVLNMgOkgu4ROJ1y-h7AretHZR61zzPGUvgzXWtO_cDsXLDgd9Rt_-llMLXqBbjnse9afZmrFz1Jwv6X1kJF56fznCIaMXSYi0qhz1Tl0MGqp4m8ba-xWcj8nTJDISOZr8O7XuPAn6ljyVJTDaLj-bVDCzUqSTQ6qudJPzE_VbCKQ&q=kuty%C3%A1k&ved=2ahUKEwjrmYTO8_GSAxXRJhAIHYV4LhUQtKgLegQIDxAB&biw=1920&bih=919&dpr=1" class="nav-btn">Videos</a>
+        </div>
+
+        <!-- Page title -->
+        <h1 class="page-title">A kutya</h1>
+
+        <!-- Main text -->
+        <p>A kutya vagy eb (Canis lupus familiaris) ujjon járó emlős ragadozó állat, a szürke farkas (Canis lupus) egy mára kihalt alfajának háziasított formája. Valószínűleg a legrégebben háziasított állatfaj. Az egyetlen olyan emlős állatfaj, amely tudományos nevében megkapta a familiaris, azaz a családhoz tartozó jelzőt. A kutyákat szokás a társállatok sorában emlegetni.</p>
+
+        <p>Ezenkívül tágabb értelemben kutyának neveznek a <a href="#" class="text-link">kutyafélék (Canidae)</a> családján belül a <a href="#" class="text-link">valódi kutyaformák (Canini)</a> nemzetségéhez tartozó több más fajt is: ilyenek például a <a href="#" class="text-link">kisfülű kutya (Atelocynus microtis)</a>, az <a href="#" class="text-link">ázsiai vadkutya (Cuon alpinus)</a>, a <a href="#" class="text-link">nyestkutya (Nyctereutes procyonoides)</a>, az <a href="#" class="text-link">afrikai vadkutya vagy hiénakutya (Lycaon pictus)</a> és az <a href="#" class="text-link">őserdei kutya (Speothos venaticus)</a>. A háziasított kutyát mindezektől a <a href="#" class="text-link">házikutya</a> elnevezéssel különböztetik meg.</p>
+
+        <!-- Cards -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 mt-2">
+
+            <!-- Szürke farkas -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/szurke_farkas.jpg" alt="Szürke farkas">
+                    <div class="card-body">
+                        <h5 class="card-heading">Szürke farkas</h5>
+                        <p class="card-text">A szürke farkas vagy csak egyszerűen farkas (Canis lupus).<br>
+                        Tágabb értelemben farkasnak neveznek a <a href="#" class="text-link">kutyafélék (Canidae)</a> családján belül több más fajt is: ezek a <a href="#" class="text-link">prérifarkas (Canis latrans)</a>, a <a href="#" class="text-link">vörös farkas vagy rőt farkas (Canis rufus)</a> és a <a href="#" class="text-link">sörényes farkas (Chrysocyon brachyurus)</a>. Emellett az aranysakál népies elnevezése, a nádi farkas a szürke farkassal való közeli rokonságára és összetéveszthetőségére utal.</p>
+                        <a href="https://hu.wikipedia.org/wiki/Sz%C3%BCrke_farkas" class="tovabb-btn">Tovább ...</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alfaj -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/kutyafelek.jpg" alt="Alfaj">
+                    <div class="card-body">
+                        <h5 class="card-heading">Alfaj</h5>
+                        <p class="card-text">Egy állat- vagy növényfajon akkor tekintjük eltérő alfajoknak,
+                            <ul>
+                                <li>ha öröklődő tulajdonságaikban jelentősen különböznek (az alfajok közti különbség lényegesen nagyobb mint az alfajon belüli egyedi variabilitás),</li>
+                                <li>és ha eltérő földrajzi elterjedési területük van. Az elterjedési terület határán az eltérő alfajok természetesen szabadon kereszteződnek és átmeneti formákat hoznak létre.</li>
+                            </ul>
+                        </p>
+                        <a href="https://hu.wikipedia.org/wiki/Alfaj" class="tovabb-btn">Tovább ...</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Erdei kutya -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/erdei_kutya.jpg" alt="Erdei kutya">
+                    <div class="card-body">
+                        <h5 class="card-heading">Erdei kutya</h5>
+                        <p class="card-text">Az erdei kutya vagy őserdei kutya (Speothos venaticus) Dél-Amerika északi területein mindenütt előfordul; erdőben, mocsárban, szavannán és bozótosban egyaránt megél. Brazíliától kezdve Bolívián át egészen Panamáig terjed az állománya. Manapság ritka állat.
+                        <br>Kisebb falkákban vadászik és kifejezetten nappali állat. Tápláléka kisebb emlősökből áll; olykor gyümölcsöt is eszik. Fogságban 10 évig is élhet.</p>
+                        <a href="https://hu.wikipedia.org/wiki/Erdei_kutya" class="tovabb-btn">Tovább ...</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Afrikai vadkutya -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/afrikai_vadkutya.jpg" alt="Afrikai vadkutya">
+                    <div class="card-body">
+                        <h5 class="card-heading">Afrikai vadkutya</h5>
+                        <p class="card-text">Az afrikai vadkutya vagy hiénakutya (Lycaon pictus) az emlősök (Mammalia) osztályának ragadozók (Carnivora) rendjébe, ezen belül a <a href="#" class="text-link">kutyafélék (Canidae)</a> családjába tartozó faj. Élőhelye Afrika. Tarka színezetű, foltokkal tarkított bundája van, innen ered az angol neve, a painted dog, amely festett kutyát jelent.
+                        <br>Társadalmuk összetettsége az egyik legfigyelemreméltóbb az állatvilágban.</p>
+                        <a href="https://hu.wikipedia.org/wiki/Afrikai_vadkutya" class="tovabb-btn">Tovább ...</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
