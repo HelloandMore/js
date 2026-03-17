@@ -11,7 +11,7 @@ app.get("/rengesek/telepulesek/:varmegye", (req, res) => {
   const rows = db
     .prepare("SELECT nev FROM telepules WHERE varmegye = ? ORDER BY nev ASC")
     .all(varmegye);
-  res.json(rows.map((r) => r.nev));
+  res.status(200).json(rows.map((r) => r.nev));
 });
 
 // 2. GET /rengesek/varmegye/statisztika
@@ -26,7 +26,7 @@ app.get("/rengesek/varmegye/statisztika", (req, res) => {
        ORDER BY db DESC`,
     )
     .all();
-  res.json(rows);
+  res.status(200).json(rows);
 });
 
 // 3. GET /rengesek/intenzitas
@@ -42,7 +42,7 @@ app.get("/rengesek/intenzitas", (req, res) => {
        LIMIT 3`,
     )
     .all();
-  res.json(rows);
+  res.status(200).json(rows);
 });
 
 // 4. POST /rengesek/uj
