@@ -1,0 +1,6 @@
+arb-dir: l10n
+template-arb-file: intl_hu.arb
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+preferred-supported-locales:
+  - hu
