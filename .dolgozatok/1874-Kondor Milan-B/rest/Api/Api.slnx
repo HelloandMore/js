@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../Database/Database.csproj" Id="078b9cd8-afea-46fb-9620-384c4d5a411d" />
+  <Project Path="Api.csproj" />
+</Solution>

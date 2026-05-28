@@ -1,0 +1,14 @@
+"Server=.\\SQLEXPRESS;Database=MyTestDB;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;"
+
+"Server(localdb)\mssqllocaldb;Database=VehicleDB;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True;"
+
+ez a ket connection string
+kerdes melyik instance lesz fent
+
+nuget csomagok:
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.Abstractions
+Microsoft.EntityFrameworkCore.Proxies
+Microsoft.EntityFrameworkCore.Relationa
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Tools

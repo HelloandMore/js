@@ -1,0 +1,130 @@
+body {
+  background-color: #3f3f3f;
+  /* font-family: Georgia, "Times New Roman", serif; */
+  color: #f0f0f0;
+}
+
+/* Centred page wrapper — white on the sides at large sizes */
+.page-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+/* Navbar — contained inside the wrapper */
+.navbar-custom {
+  background-color: #6b7280;
+  padding: 0.4rem 1.2rem;
+  display: flex;
+  border-color: orange;
+  border-style: solid;
+  flex-direction: column; /* stack on mobile */
+}
+@media (min-width: 576px) {
+  .navbar-custom {
+    flex-direction: row; /* horizontal from sm up */
+    align-items: center;
+  }
+}
+.navbar-custom .nav-link {
+  color: orange !important;
+  font-family: Arial, sans-serif;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.75rem;
+  display: block;
+}
+.navbar-custom .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Main content area */
+.main-content {
+  background-color: #6b7280;
+  padding: 2rem 2.5rem;
+}
+
+.container {
+    margin-top: 2rem;
+    background-color: orange;
+}
+
+h1.page-title {
+  color: orange;
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+h3.page-title {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #fff;
+}
+
+/* Disambiguation list */
+.disambig-list {
+  /* list-style: none; */
+  padding: 0;
+  margin-bottom: 1rem;
+  margin-left: 35%;
+  text-align: left;
+}
+.disambig-list li {
+  position: relative;
+  padding-left: 1.2rem;
+  color: #f0f0f0;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.intro-text {
+  color: #f0f0f0;
+  font-size: 0.92rem;
+  text-align: justify;
+  margin-bottom: 2rem;
+}
+
+/* Cards */
+.card {
+  background-color: #6b7280 !important;
+  border: none;
+  border-radius: 0;
+  height: 100%;
+}
+.card-img-top {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: top;
+}
+.card-body {
+  padding: 1rem;
+}
+.card-title {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: orange;
+  margin-bottom: 0.5rem;
+}
+.card-text {
+  font-size: 0.82rem;
+  text-align: justify;
+  color: #fff;
+  line-height: 1.5;
+}
+.btn-more {
+  /* background-color: #c0303a; */
+  color: orange;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+  display: inline-block;
+  cursor: pointer;
+}
+.btn-more:hover {
+  background-color: orange;
+  color: #fff;
+}
